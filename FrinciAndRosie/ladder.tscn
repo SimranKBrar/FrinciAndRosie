@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmwn28nd8vt2f"]
+
+[ext_resource type="Script" path="res://ladder.gd" id="1_xwyyl"]
+[ext_resource type="Texture2D" uid="uid://bsmb4lteb7ovf" path="res://Assets/climabale wall.png" id="2_i2lyd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e41en"]
+size = Vector2(15, 63)
+
+[node name="Ladder" type="Area2D"]
+script = ExtResource("1_xwyyl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(49.5, 24.5)
+shape = SubResource("RectangleShape2D_e41en")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(58, 25)
+texture = ExtResource("2_i2lyd")
+
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
