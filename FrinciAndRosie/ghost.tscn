@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjy4wx1moqdgr"]
+
+[ext_resource type="Script" path="res://ghost.gd" id="1_vouw5"]
+[ext_resource type="Texture2D" uid="uid://hx25yc1wambb" path="res://Assets/ghost.png" id="3_i3jgn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ihvej"]
+radius = 20.0
+height = 54.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ly4ro"]
+radius = 18.0
+height = 54.0
+
+[node name="Ghost" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 2
+script = ExtResource("1_vouw5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_i3jgn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -2)
+shape = SubResource("CapsuleShape2D_ihvej")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -2)
+shape = SubResource("CapsuleShape2D_ly4ro")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-24, 0)
+target_position = Vector2(0, 40)
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+position = Vector2(-34, 0)
+target_position = Vector2(-9, 0)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

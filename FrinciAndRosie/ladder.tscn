@@ -7,6 +7,7 @@
 size = Vector2(15, 63)
 
 [node name="Ladder" type="Area2D"]
+collision_layer = 3
 script = ExtResource("1_xwyyl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

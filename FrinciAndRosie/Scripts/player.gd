@@ -48,7 +48,7 @@ func player_animations():
 func _input(event):
 	#on attack
 	if event.is_action_pressed("ui_attack"):
-		Global.is_attacking = true
+		attack()
 		#$AnimatedSprite2D.play("attack")		
 
 	#on jump
@@ -71,3 +71,14 @@ func _input(event):
 func _on_animated_sprite_2d_animation_finished():
 	Global.is_attacking = false
 #	is_climbing = false	
+
+func attack():
+
+	Global.is_attacking = true
+	var overlapping_objects = $AttackBox.get_overlapping_areas()
+	
+	for area in overlapping_objects:
+		if area.get_parent().is_in_group("enemy"):
+			area.get_parent().die()
+			
+	_on_animated_sprite_2d_animation_finished()

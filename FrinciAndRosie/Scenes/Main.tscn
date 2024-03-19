@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b2l1s7ihplno"]
+[gd_scene load_steps=30 format=3 uid="uid://b2l1s7ihplno"]
 
 [ext_resource type="PackedScene" uid="uid://bgfl4ut0c54t8" path="res://Scenes/player.tscn" id="1_stj5r"]
 [ext_resource type="Texture2D" uid="uid://ct7dx67yam2db" path="res://Assets/watertub.png" id="2_vjqvt"]
@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://c2s5bi6u3ffv4" path="res://Assets/talemaoe.png" id="9_5kn6q"]
 [ext_resource type="Texture2D" uid="uid://vi02y0qfewrn" path="res://Assets/tilemapv2.png" id="10_bjxgy"]
 [ext_resource type="PackedScene" uid="uid://cmwn28nd8vt2f" path="res://ladder.tscn" id="11_0d0q8"]
+[ext_resource type="PackedScene" uid="uid://cjy4wx1moqdgr" path="res://ghost.tscn" id="12_3h7qh"]
+[ext_resource type="PackedScene" uid="uid://bapmmo8ysw2gp" path="res://level_end_point.tscn" id="13_2dc18"]
+[ext_resource type="PackedScene" uid="uid://cabtvs5sspg42" path="res://Scenes/Main_2.tscn" id="14_0agjq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1a6b"]
 texture = ExtResource("2_vjqvt")
@@ -700,6 +703,33 @@ sources/7 = SubResource("TileSetAtlasSource_5wipx")
 sources/8 = SubResource("TileSetAtlasSource_frenr")
 sources/9 = SubResource("TileSetAtlasSource_5uhgv")
 
+[sub_resource type="Curve2D" id="Curve2D_i6a0i"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 869, 590, 0, 0, 0, 0, 340, 589)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_dswji"]
+resource_name = "new_animation"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 4.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7seqa"]
+_data = {
+"new_animation": SubResource("Animation_dswji")
+}
+
 [node name="Main" type="Node2D"]
 
 [node name="Level" type="TileMap" parent="."]
@@ -721,3 +751,24 @@ position = Vector2(902, 554)
 
 [node name="Ladder" parent="Node2D" instance=ExtResource("11_0d0q8")]
 position = Vector2(98, 431)
+
+[node name="Ghost" parent="." instance=ExtResource("12_3h7qh")]
+position = Vector2(751, 243)
+
+[node name="Ghost Path" type="Node2D" parent="."]
+
+[node name="Path2D" type="Path2D" parent="Ghost Path"]
+curve = SubResource("Curve2D_i6a0i")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Ghost Path/Path2D"]
+position = Vector2(869, 590)
+rotation = -3.1397
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ghost Path/Path2D"]
+libraries = {
+"": SubResource("AnimationLibrary_7seqa")
+}
+
+[node name="Level EndPoint" parent="." instance=ExtResource("13_2dc18")]
+position = Vector2(276, 604)
+next_level = ExtResource("14_0agjq")
