@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3 uid="uid://xbyyj5lujknh"]
+
+[ext_resource type="Script" path="res://Scenes/main_menu.gd" id="1_ojkes"]
+
+[node name="MainMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_ojkes")
+
+[node name="Menu" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.513726, 0.25098, 0.25098, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Menu"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 25.0
+offset_right = 1113.0
+offset_bottom = 605.0
+color = Color(0.588235, 0.270588, 0.270588, 1)
+
+[node name="Label" type="Label" parent="Menu/ColorRect"]
+layout_mode = 0
+offset_left = 299.0
+offset_top = 20.0
+offset_right = 534.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 40
+text = "Frinci and Rosie"
+
+[node name="ButtonNew" type="Button" parent="Menu/ColorRect"]
+layout_mode = 0
+offset_left = 285.0
+offset_top = 100.0
+offset_right = 785.0
+offset_bottom = 180.0
+theme_override_font_sizes/font_size = 35
+text = "New Game"
+
+[node name="ButtonLoad" type="Button" parent="Menu/ColorRect"]
+layout_mode = 0
+offset_left = 285.0
+offset_top = 300.0
+offset_right = 785.0
+offset_bottom = 380.0
+theme_override_font_sizes/font_size = 35
+text = "Load Game"
+
+[node name="ButtonQuit" type="Button" parent="Menu/ColorRect"]
+layout_mode = 0
+offset_left = 285.0
+offset_top = 400.0
+offset_right = 785.0
+offset_bottom = 480.0
+theme_override_font_sizes/font_size = 35
+text = "Quit Game"
+
+[connection signal="pressed" from="Menu/ColorRect/ButtonNew" to="." method="_on_button_new_pressed"]
+[connection signal="pressed" from="Menu/ColorRect/ButtonLoad" to="." method="_on_button_load_pressed"]
+[connection signal="pressed" from="Menu/ColorRect/ButtonQuit" to="." method="_on_button_quit_pressed"]

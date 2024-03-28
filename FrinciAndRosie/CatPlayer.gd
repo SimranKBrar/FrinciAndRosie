@@ -23,21 +23,21 @@ func _physics_process(delta):
 #horizontal movement calculation
 func horizontal_movement():
 	# if keys are pressed it will return 1 for ui_right, -1 for ui_left, and 0 for neither
-	var horizontal_input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	var horizontal_input = Input.get_action_strength("cat_right") - Input.get_action_strength("cat_left")
 	# horizontal velocity which moves player left or right based on input
 	velocity.x = horizontal_input * speed
 
 #animations
 func player_animations():
 	#on left (add is_action_just_released so you continue running after jumping)
-	if Input.is_action_pressed("ui_left") || Input.is_action_just_released("ui_accept"):
+	if Input.is_action_pressed("cat_left") || Input.is_action_just_released("cat_accept"):
 		$AnimatedSprite2D.flip_h = true
-		$AnimatedSprite2D.play("dogwalk")
+		$AnimatedSprite2D.play("catwalk")
 		
 	#on right (add is_action_just_released so you continue running after jumping)
-	if Input.is_action_pressed("ui_right") || Input.is_action_just_released("ui_accept"):
+	if Input.is_action_pressed("cat_right") || Input.is_action_just_released("cat_accept"):
 		$AnimatedSprite2D.flip_h = false
-		$AnimatedSprite2D.play("dogwalk")
+		$AnimatedSprite2D.play("catwalk")
 
 	
 	#on idle if nothing is being pressed
@@ -63,7 +63,7 @@ func _input(event):
 	
 	#on climbing ladders
 	if Global.is_climbing == true:
-		if Input.is_action_pressed("ui_up"):
+		if Input.is_action_pressed("cat_up"):
 			gravity = 100
 			velocity.y = -200
 		

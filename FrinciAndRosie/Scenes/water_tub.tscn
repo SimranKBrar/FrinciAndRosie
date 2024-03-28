@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7fge31cjtub4"]
+
+[ext_resource type="Texture2D" uid="uid://ct7dx67yam2db" path="res://Assets/watertub.png" id="1_0irwc"]
+[ext_resource type="Script" path="res://Scripts/water_tub.gd" id="1_82eal"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cdbjs"]
+size = Vector2(45, 38)
+
+[node name="WaterTub" type="Area2D"]
+script = ExtResource("1_82eal")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0irwc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -2)
+shape = SubResource("RectangleShape2D_cdbjs")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

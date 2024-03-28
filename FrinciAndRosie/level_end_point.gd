@@ -7,14 +7,16 @@ func _ready():
 
 
 func _on_body_entered(body):
-	get_tree().paused = true
-	$UI/Menu.visible = true
-	# animation to make menu's modular value visible
-	$AnimationPlayer.play("ui_visibility")  
+	if body.name == "Player":
+		get_tree().paused = true
+		$UI/Menu.visible = true
+		# animation to make menu's modular value visible
+		$AnimationPlayer.play("ui_visibility")  
 
 func _on_restart_button_pressed():
 	get_tree().paused = false
 	$UI/Menu.visible = false
+	get_tree().reload_current_scene()
 
 
 func _on_continue_button_pressed():
