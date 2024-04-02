@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcj6yussbevxf"]
+
+[ext_resource type="Script" path="res://Scripts/pickup.gd" id="1_0lh0n"]
+[ext_resource type="Texture2D" uid="uid://x4jkevc7a7e" path="res://Assets/bone.png" id="1_n8aud"]
+[ext_resource type="Script" path="res://Scripts/CollisionShape2D.gd" id="2_sbrbl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vus7"]
+size = Vector2(43, 24)
+
+[node name="Pickup" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_0lh0n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_1vus7")
+script = ExtResource("2_sbrbl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-10, -17)
+texture = ExtResource("1_n8aud")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

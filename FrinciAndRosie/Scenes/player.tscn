@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgfl4ut0c54t8"]
+[gd_scene load_steps=15 format=3 uid="uid://bgfl4ut0c54t8"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_e5fsk"]
 [ext_resource type="Texture2D" uid="uid://b4edxm440muh8" path="res://Assets/Sprite-0001-Recovered3.png" id="2_8otrx"]
 [ext_resource type="Texture2D" uid="uid://cbcmkmil2q2ql" path="res://Assets/Sprite-0001-Recovered2.png" id="3_wbr7v"]
+[ext_resource type="Script" path="res://Treats.gd" id="4_8e40i"]
+[ext_resource type="Texture2D" uid="uid://x4jkevc7a7e" path="res://Assets/bone.png" id="5_07daj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_353vg"]
 size = Vector2(23, 22)
@@ -276,6 +278,38 @@ process_mode = 3
 libraries = {
 "": SubResource("AnimationLibrary_0cw1p")
 }
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Treats" type="ColorRect" parent="UI"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 122.0
+offset_bottom = 60.0
+color = Color(0.0509804, 0.0509804, 0.0509804, 0.705882)
+script = ExtResource("4_8e40i")
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Treats"]
+position = Vector2(18, 1)
+scale = Vector2(1.10156, 1.07031)
+texture = ExtResource("5_07daj")
+
+[node name="Label" type="Label" parent="UI/Treats"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = -23.0
+offset_right = 2.0
+offset_bottom = 22.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "0"
+vertical_alignment = 1
 
 [connection signal="pressed" from="GameOver/Menu/Container/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="GameOver/Menu/Container/MenuButton" to="." method="_on_menu_button_pressed"]

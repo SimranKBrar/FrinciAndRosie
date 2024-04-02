@@ -11,7 +11,7 @@ height = 54.0
 radius = 18.0
 height = 54.0
 
-[node name="Vacuum" type="CharacterBody2D" groups=["enemy"]]
+[node name="Vacuum" type="CharacterBody2D" groups=["dogenemy"]]
 collision_layer = 2
 script = ExtResource("1_5yl25")
 

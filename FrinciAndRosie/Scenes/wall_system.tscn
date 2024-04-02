@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dh3ifk2je512g"]
+
+[ext_resource type="Script" path="res://Scripts/WallSystem.gd" id="1_thd7o"]
+[ext_resource type="PackedScene" uid="uid://lg4xh5i44mq8" path="res://Scenes/platform.tscn" id="2_knjos"]
+[ext_resource type="Texture2D" uid="uid://cujlumivhkw0p" path="res://Assets/wodFloor.png" id="3_310da"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kknxg"]
+size = Vector2(62, 15)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e28le"]
+
+[node name="WallSystem" type="Area2D"]
+script = ExtResource("1_thd7o")
+
+[node name="Platform" parent="." instance=ExtResource("2_knjos")]
+
+[node name="PressurePlate" type="Area2D" parent="."]
+light_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PressurePlate"]
+position = Vector2(-88, 49.5)
+shape = SubResource("RectangleShape2D_kknxg")
+
+[node name="Sprite2D" type="Sprite2D" parent="PressurePlate"]
+position = Vector2(-88, 49)
+scale = Vector2(1, 0.25)
+texture = ExtResource("3_310da")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_e28le")
+
+[connection signal="area_entered" from="PressurePlate" to="." method="_on_pressure_plate_area_entered"]
+[connection signal="area_exited" from="PressurePlate" to="." method="_on_pressure_plate_area_exited"]

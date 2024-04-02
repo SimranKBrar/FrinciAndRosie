@@ -12,5 +12,12 @@ func _process(delta):
 
 
 func _on_area_entered(area):
-	if area.get_parent().name == "Player":
+	print(area.get_parent().name)
+	if area.get_parent().name == "CatPlayer":
+		area.get_parent().queue_free()
+
+
+func _on_area_2d_area_entered(area):
+	if area.get_parent().name == "CatPlayer":
+		Global.charDied = true
 		area.get_parent().queue_free()

@@ -5,7 +5,17 @@ extends CharacterBody2D
 @export var gravity = 300
 @export var jump_height = -300
 
+signal update_lives(lives, max_lives)
 
+	# health stats
+var max_lives = 3
+var lives = 3
+signal update_bones(treats)
+
+func add_pickup():
+	Global.treats += 1  # Update global treat count
+	update_bones.emit(Global.treats)  # Emit signal for UI update
+	print(Global.treats)
 #movement and physics
 func _physics_process(delta):
 	# vertical movement velocity (down)
@@ -32,11 +42,13 @@ func player_animations():
 	#on left (add is_action_just_released so you continue running after jumping)
 	if Input.is_action_pressed("ui_left") || Input.is_action_just_released("ui_accept"):
 		$AnimatedSprite2D.flip_h = true
+		$AttackBox.position.x = -55
 		$AnimatedSprite2D.play("dogwalk")
 		
 	#on right (add is_action_just_released so you continue running after jumping)
 	if Input.is_action_pressed("ui_right") || Input.is_action_just_released("ui_accept"):
 		$AnimatedSprite2D.flip_h = false
+		$AttackBox.position.x = 0
 		$AnimatedSprite2D.play("dogwalk")
 
 	
@@ -61,16 +73,14 @@ func _input(event):
 		velocity.y = jump_height
 		$AnimatedSprite2D.play("jump")
 	
-	#on climbing ladders
-	if Global.is_climbing == true:
+	if Global.is_climbing:
 		if Input.is_action_pressed("ui_up"):
-			gravity = 100
 			velocity.y = -200
-		
-	#reset gravity
+		elif Input.is_action_pressed("ui_down"):
+			velocity.y = 200
 	else:
 		gravity = 200
-		Global.is_climbing = false	
+		Global.is_climbing = false
 		
 #reset our animation variables
 func _on_animated_sprite_2d_animation_finished():
@@ -83,7 +93,7 @@ func attack():
 	var overlapping_objects = $AttackBox.get_overlapping_areas()
 	
 	for area in overlapping_objects:
-		if area.get_parent().is_in_group("enemy"):
+		if area.get_parent().is_in_group("dogenemy"):
 			area.get_parent().die()
 			
 	_on_animated_sprite_2d_animation_finished()
@@ -116,3 +126,16 @@ func _on_button_load_pressed():
 
 func _on_button_quit_pressed():
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	
+func _ready():
+	#updates our UI labels when signals are emitted
+	update_bones.connect($UI/Treats.update_bones)
+
+	#show our correct lives value on load
+	$UI/Treats/Label.text = str(Global.treats)
+func _process(delta):
+	if lives <= 0:
+		emit_signal("character_died")
+	# Check for changes in the global variable and update UI label if needed
+	if $UI/Treats/Label.text != str(Global.treats):
+		$UI/Treats/Label.text = str(Global.treats)

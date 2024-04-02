@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bapmmo8ysw2gp"]
+[gd_scene load_steps=10 format=3 uid="uid://cgbfwqp3cnce"]
 
-[ext_resource type="Texture2D" uid="uid://dkxu2e7r1h8le" path="res://Assets/meatTreat.png" id="1_0bapf"]
 [ext_resource type="Script" path="res://level_end_point.gd" id="1_knsrv"]
+[ext_resource type="Texture2D" uid="uid://b07ef8f53jtt2" path="res://Assets/cat bowl.png" id="2_14jfq"]
+[ext_resource type="Texture2D" uid="uid://dmyx0apjvh3bg" path="res://Assets/dogbowl.png" id="2_icc68"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8taaf"]
 radius = 16.0312
@@ -45,9 +46,19 @@ script = ExtResource("1_knsrv")
 position = Vector2(-5, -14)
 shape = SubResource("CircleShape2D_8taaf")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(189, -15)
+shape = SubResource("CircleShape2D_8taaf")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(11, 3)
-texture = ExtResource("1_0bapf")
+position = Vector2(-12, -19)
+scale = Vector2(1.07813, 1.03125)
+texture = ExtResource("2_14jfq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(184, -20)
+scale = Vector2(1.07813, 1.03125)
+texture = ExtResource("2_icc68")
 
 [node name="UI" type="CanvasLayer" parent="."]
 

@@ -5,7 +5,16 @@ extends CharacterBody2D
 @export var gravity = 300
 @export var jump_height = -300
 
+var max_lives = 3
+var lives = 3
 
+signal update_bones(treats)
+
+func add_pickup():
+	Global.treats += 1  # Update global treat count
+	update_bones.emit(Global.treats)  # Emit signal for UI update
+	print(Global.treats)
+	
 #movement and physics
 func _physics_process(delta):
 	# vertical movement velocity (down)
@@ -31,12 +40,14 @@ func horizontal_movement():
 func player_animations():
 	#on left (add is_action_just_released so you continue running after jumping)
 	if Input.is_action_pressed("cat_left") || Input.is_action_just_released("cat_accept"):
-		$AnimatedSprite2D.flip_h = true
+		$AnimatedSprite2D.flip_h = false
+		$AttackBox.position.x = -50
 		$AnimatedSprite2D.play("catwalk")
 		
 	#on right (add is_action_just_released so you continue running after jumping)
 	if Input.is_action_pressed("cat_right") || Input.is_action_just_released("cat_accept"):
-		$AnimatedSprite2D.flip_h = false
+		$AnimatedSprite2D.flip_h = true
+		$AttackBox.position.x = 0
 		$AnimatedSprite2D.play("catwalk")
 
 	
@@ -52,12 +63,12 @@ func _input(event):
 		#show menu
 		$PauseMenu.visible = true
 	#on attack
-	if event.is_action_pressed("ui_attack"):
+	if event.is_action_pressed("cat_attack"):
 		attack()
 		#$AnimatedSprite2D.play("attack")		
 
 	#on jump
-	if event.is_action_pressed("ui_accept") and is_on_floor():
+	if event.is_action_pressed("cat_jump") and is_on_floor():
 		velocity.y = jump_height
 		$AnimatedSprite2D.play("jump")
 	
@@ -83,7 +94,7 @@ func attack():
 	var overlapping_objects = $AttackBox.get_overlapping_areas()
 	
 	for area in overlapping_objects:
-		if area.get_parent().is_in_group("enemy"):
+		if area.get_parent().is_in_group("catenemy"):
 			area.get_parent().die()
 			
 	_on_animated_sprite_2d_animation_finished()
@@ -116,3 +127,5 @@ func _on_button_load_pressed():
 
 func _on_button_quit_pressed():
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	
+

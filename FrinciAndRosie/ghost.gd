@@ -7,6 +7,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var facing_right = false
 
+	
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -31,7 +32,8 @@ func flip():
 
 
 func _on_area_2d_area_entered(area):
-	if area.get_parent().name == "Player":
+	if area.get_parent().name == "Player" || area.get_parent().name == "CatPlayer":
+		Global.charDied = true
 		area.get_parent().queue_free()
 		
 func die():

@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://c2s5bi6u3ffv4" path="res://Assets/talemaoe.png" id="9_e300g"]
 [ext_resource type="Texture2D" uid="uid://vi02y0qfewrn" path="res://Assets/tilemapv2.png" id="10_njnm7"]
 [ext_resource type="PackedScene" uid="uid://cmwn28nd8vt2f" path="res://ladder.tscn" id="11_wftc2"]
-[ext_resource type="PackedScene" uid="uid://bapmmo8ysw2gp" path="res://level_end_point.tscn" id="12_6jyth"]
+[ext_resource type="PackedScene" uid="uid://cgbfwqp3cnce" path="res://level_end_point.tscn" id="12_6jyth"]
 [ext_resource type="PackedScene" uid="uid://dqgga6pwi600m" path="res://Scenes/Main_3.tscn" id="13_dhdbw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1a6b"]

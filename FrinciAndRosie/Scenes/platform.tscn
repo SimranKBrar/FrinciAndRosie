@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://lg4xh5i44mq8"]
+
+[ext_resource type="Script" path="res://Scripts/platform.gd" id="1_bpa8j"]
+[ext_resource type="Texture2D" uid="uid://mcitnb6tm7mk" path="res://Assets/walltile.png" id="1_uecfg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uyria"]
+size = Vector2(64, 129)
+
+[node name="Platform" type="Area2D"]
+script = ExtResource("1_bpa8j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_uyria")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1, 2.01563)
+texture = ExtResource("1_uecfg")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.612
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
