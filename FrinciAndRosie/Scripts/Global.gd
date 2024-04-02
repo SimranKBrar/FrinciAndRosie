@@ -1,4 +1,7 @@
 extends Node
+var final_score
+var final_rating
+var final_time
 
 var is_attacking = false
 var is_climbing = false

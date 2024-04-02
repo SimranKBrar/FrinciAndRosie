@@ -11,7 +11,7 @@ signal update_lives(lives, max_lives)
 var max_lives = 3
 var lives = 3
 signal update_bones(treats)
-
+var level_start_time = Time.get_ticks_msec()
 func add_pickup():
 	Global.treats += 1  # Update global treat count
 	update_bones.emit(Global.treats)  # Emit signal for UI update
@@ -139,3 +139,10 @@ func _process(delta):
 	# Check for changes in the global variable and update UI label if needed
 	if $UI/Treats/Label.text != str(Global.treats):
 		$UI/Treats/Label.text = str(Global.treats)
+		
+func final_score_time_and_rating():
+# Time to complete in seconds
+	var time_taken = (Time.get_ticks_msec() - level_start_time) / 1000.0 # Convert to seconds
+	var time_rounded = str(roundf(time_taken)) + " secs"
+	print(time_rounded)
+	Global.final_time = time_rounded

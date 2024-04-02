@@ -8,6 +8,8 @@ extends CharacterBody2D
 var max_lives = 3
 var lives = 3
 
+var level_start_time = Time.get_ticks_msec()
+
 signal update_bones(treats)
 
 func add_pickup():
@@ -127,5 +129,11 @@ func _on_button_load_pressed():
 
 func _on_button_quit_pressed():
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
-	
+
+func final_score_time_and_rating():
+# Time to complete in seconds
+	var time_taken = (Time.get_ticks_msec() - level_start_time) / 1000.0 # Convert to seconds
+	var time_rounded = str(roundf(time_taken)) + " secs"
+	print(time_rounded)
+	Global.final_time = time_rounded
 

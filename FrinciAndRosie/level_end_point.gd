@@ -14,11 +14,13 @@ func _on_body_entered(body):
 		player1_on_collision = true
 	elif body.name == "CatPlayer":
 		player2_on_collision = true
-	
+		
+	body.final_score_time_and_rating()
 	if player1_on_collision && player2_on_collision: 
 		proceed_to_next_level()
 
 func proceed_to_next_level():
+	$UI/Menu/Container/TimeCompleted/Value.text = str(Global.final_time)
 	get_tree().paused = true
 	Global.charDied = false
 	$UI/Menu.visible = true
