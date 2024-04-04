@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b2l1s7ihplno"]
+[gd_scene load_steps=31 format=3 uid="uid://b2l1s7ihplno"]
 
 [ext_resource type="PackedScene" uid="uid://bgfl4ut0c54t8" path="res://Scenes/player.tscn" id="1_stj5r"]
 [ext_resource type="Texture2D" uid="uid://ct7dx67yam2db" path="res://Assets/watertub.png" id="2_vjqvt"]
@@ -18,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://3ymlbjwy03py" path="res://Scenes/vacuum.tscn" id="16_0805l"]
 [ext_resource type="PackedScene" uid="uid://d1pd67sovoyon" path="res://Scenes/cat_player.tscn" id="17_aqjwc"]
 [ext_resource type="PackedScene" uid="uid://bcj6yussbevxf" path="res://Scenes/pickup.tscn" id="18_j2afw"]
-[ext_resource type="PackedScene" uid="uid://dh3ifk2je512g" path="res://Scenes/wall_system.tscn" id="19_2qju4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1a6b"]
 texture = ExtResource("2_vjqvt")
@@ -718,7 +717,7 @@ layer_1/name = "foreground"
 layer_1/tile_data = PackedInt32Array(1048575, 5, 0, 1310719, 5, 0, 1572863, 5, 0, 1835007, 5, 0, 2097151, 5, 0, 2359295, 5, 0, 2424831, 5, 0, 2621441, 6, 0, 2097155, 65545, 13, 2621445, 6, 0, 2097159, 65545, 13, 2621449, 6, 0, 2097163, 65545, 13, 2621453, 6, 0, 2097167, 458761, 13, 2621457, 6, 0, 2097171, 917513, 13, 2621461, 6, 0, 2097175, 917513, 13, 2621465, 6, 0, 2097179, 917513, 13, 2621469, 6, 0, 2097183, 917513, 13, 2621473, 6, 0, 2097187, 458761, 13, 2621477, 6, 0, 2097191, 65545, 13, 2621481, 6, 0, 2097195, 65545, 13, 2621485, 6, 0, 2097199, 65545, 13, 2621489, 6, 0, 2097203, 458761, 13, 2621493, 6, 0, 2097207, 65545, 13, 2621497, 6, 0, 2621501, 6, 0, 2621505, 6, 0, 2621508, 6, 0, 1048648, 5, 0, 1310792, 5, 0, 1507400, 5, 0, 1572936, 5, 0, 1769544, 5, 0, 1835080, 5, 0, 2031688, 5, 0, 2097224, 5, 0, 2293832, 5, 0, 2359368, 5, 0, 2621512, 6, 0, -1, 5, 0, 262143, 5, 0, 524287, 5, 0, 786431, 5, 0, -65533, 5, 0, -65529, 5, 0, -65525, 5, 0, -65521, 5, 0, -65517, 5, 0, -65513, 5, 0, -65509, 5, 0, -65505, 5, 0, -65501, 5, 0, -65497, 5, 0, -65493, 5, 0, -65489, 5, 0, -65485, 5, 0, -65481, 5, 0, -65477, 5, 0, -65473, 5, 0, -65469, 5, 0, -65466, 5, 0, 72, 5, 0, 262216, 5, 0, 524360, 5, 0, 786504, 5, 0, 1638415, 65545, 13, 1638419, 65545, 13, 1638423, 458761, 13, 1638427, 65545, 13, 1638431, 65545, 13, 1638435, 458761, 13, 1638439, 65545, 13, 1638443, 65545, 13, 1638447, 65545, 13, 1638451, 65545, 13, 1114115, 65545, 13, 1114119, 458761, 13, 1114123, 65545, 13, 1114127, 458761, 13, 1114131, 65545, 13, 1114135, 65545, 13, 1114139, 65545, 13, 524307, 65545, 13, 524311, 65545, 13, 524315, 65545, 13, 524319, 458761, 13, 524323, 65545, 13, 524327, 458761, 13, 524331, 65545, 13, 524335, 458761, 13, 524339, 65545, 13, 1638455, 65545, 13, 1638459, 458761, 13, 1638463, 458761, 13, 1114180, 458761, 13, 1114176, 65545, 13, 1114172, 65545, 13, 1114168, 458761, 13, 1114164, 65545, 13, 1114160, 65545, 13, 1114156, 65545, 13, 524336, 458761, 13)
 
 [node name="Level EndPoint" parent="." instance=ExtResource("13_2dc18")]
-position = Vector2(597, 604)
+position = Vector2(465, 108)
 next_level = ExtResource("14_0agjq")
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -770,10 +769,19 @@ scale = Vector2(2, 2)
 position = Vector2(1070, 556)
 
 [node name="Pickup" parent="." instance=ExtResource("18_j2afw")]
-position = Vector2(415, 597)
+position = Vector2(1080, 595)
+
+[node name="Pickup3" parent="." instance=ExtResource("18_j2afw")]
+position = Vector2(374, 371)
+
+[node name="Pickup6" parent="." instance=ExtResource("18_j2afw")]
+position = Vector2(121, 483)
+
+[node name="Pickup5" parent="." instance=ExtResource("18_j2afw")]
+position = Vector2(73, 242)
+
+[node name="Pickup4" parent="." instance=ExtResource("18_j2afw")]
+position = Vector2(945, 372)
 
 [node name="Pickup2" parent="." instance=ExtResource("18_j2afw")]
-position = Vector2(504, 600)
-
-[node name="WallSystem" parent="." instance=ExtResource("19_2qju4")]
-position = Vector2(1007, 549)
+position = Vector2(1093, 244)

@@ -117,11 +117,18 @@ func _on_button_resume_pressed():
 
 
 func _on_button_save_pressed():
-	pass # Replace with function body.
+	Global.save_game()
+
 
 
 func _on_button_load_pressed():
-	pass # Replace with function body.
+	# Get the current scene (Main or Main_2 in this case)
+	var current_scene = get_tree().root.get_tree().current_scene
+	# Free the current scene if it exists
+	if current_scene:
+		current_scene.queue_free()
+	#load game
+	Global.load_game()
 
 
 func _on_button_quit_pressed():

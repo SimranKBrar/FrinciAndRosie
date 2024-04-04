@@ -12,7 +12,13 @@ func _process(delta):
 
 
 func _on_button_load_pressed():
-	pass # Replace with function body.
+	var current_scene = get_tree().current_scene
+	# Free the current scene if it exists
+	if current_scene:
+		current_scene.queue_free()
+	Global.load_game()
+	#unpause scene
+	get_tree().paused = false  
 
 
 func _on_button_quit_pressed():

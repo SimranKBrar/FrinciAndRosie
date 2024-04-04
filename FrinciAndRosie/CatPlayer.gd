@@ -120,7 +120,7 @@ func _on_button_resume_pressed():
 
 
 func _on_button_save_pressed():
-	pass # Replace with function body.
+	Global.save_game()
 
 
 func _on_button_load_pressed():
