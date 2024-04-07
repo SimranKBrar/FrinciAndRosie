@@ -15,8 +15,9 @@ func _on_body_entered(body):
 	elif body.name == "CatPlayer":
 		player2_on_collision = true
 		
-	body.final_score_time_and_rating()
+
 	if player1_on_collision && player2_on_collision: 
+		body.final_score_time_and_rating()
 		proceed_to_next_level()
 
 func proceed_to_next_level():
