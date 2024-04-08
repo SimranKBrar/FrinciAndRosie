@@ -3,7 +3,7 @@ extends CharacterBody2D
 #player movement variables
 @export var speed = 200
 @export var gravity = 300
-@export var jump_height = -225
+@export var jump_height = -230
 
 signal update_lives(lives, max_lives)
 
@@ -44,14 +44,14 @@ func player_animations():
 	if Input.is_action_pressed("ui_left") || Input.is_action_just_released("ui_accept"):
 		$AnimatedSprite2D.flip_h = true
 		$AttackBox.position.x = -55
-		if not $AnimatedSprite2D.is_playing():
+		if $AnimatedSprite2D.animation != "dog_jump" || is_on_floor():
 			$AnimatedSprite2D.play("dog_walk")
 		
 	#on right (add is_action_just_released so you continue running after jumping)
 	if Input.is_action_pressed("ui_right") || Input.is_action_just_released("ui_accept"):
 		$AnimatedSprite2D.flip_h = false
 		$AttackBox.position.x = 0
-		if not $AnimatedSprite2D.is_playing():
+		if $AnimatedSprite2D.animation != "dog_jump" || is_on_floor():
 			$AnimatedSprite2D.play("dog_walk")
 
 	#on jump
@@ -74,8 +74,8 @@ func _input(event):
 		$PauseMenuMusic.play()
 	#on attack
 	if event.is_action_pressed("ui_attack"):
-		attack()
-		$AnimatedSprite2D.play("dog_attack")		
+		$AnimatedSprite2D.play("dog_attack")
+		attack()	
 
 	if Global.is_climbing:
 		if Input.is_action_pressed("ui_up"):
@@ -93,7 +93,6 @@ func _on_animated_sprite_2d_animation_finished():
 
 
 func attack():
-
 	Global.is_attacking = true
 	var overlapping_objects = $AttackBox.get_overlapping_areas()
 	
