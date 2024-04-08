@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 #player movement variables
-@export var speed = 300
+@export var speed = 200
 @export var gravity = 300
-@export var jump_height = -300
+@export var jump_height = -225
 
 signal update_lives(lives, max_lives)
 
@@ -43,13 +43,15 @@ func player_animations():
 	if Input.is_action_pressed("ui_left") || Input.is_action_just_released("ui_accept"):
 		$AnimatedSprite2D.flip_h = true
 		$AttackBox.position.x = -55
-		$AnimatedSprite2D.play("dog_walk")
+		if not $AnimatedSprite2D.is_playing():
+			$AnimatedSprite2D.play("dog_walk")
 		
 	#on right (add is_action_just_released so you continue running after jumping)
 	if Input.is_action_pressed("ui_right") || Input.is_action_just_released("ui_accept"):
 		$AnimatedSprite2D.flip_h = false
 		$AttackBox.position.x = 0
-		$AnimatedSprite2D.play("dog_walk")
+		if not $AnimatedSprite2D.is_playing():
+			$AnimatedSprite2D.play("dog_walk")
 
 	#on jump
 	if  Input.is_action_pressed("ui_accept") and is_on_floor():
