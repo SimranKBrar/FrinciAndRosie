@@ -1,10 +1,25 @@
-[gd_scene load_steps=15 format=3 uid="uid://bgfl4ut0c54t8"]
+[gd_scene load_steps=30 format=3 uid="uid://bgfl4ut0c54t8"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_e5fsk"]
 [ext_resource type="Texture2D" uid="uid://b4edxm440muh8" path="res://Assets/Sprite-0001-Recovered3.png" id="2_8otrx"]
+[ext_resource type="Texture2D" uid="uid://bhan4y82hui0i" path="res://Assets/dogattack1.png" id="2_a46s6"]
+[ext_resource type="Texture2D" uid="uid://c3ggb0buwjube" path="res://Assets/dogattack2.png" id="3_2a837"]
 [ext_resource type="Texture2D" uid="uid://cbcmkmil2q2ql" path="res://Assets/Sprite-0001-Recovered2.png" id="3_wbr7v"]
+[ext_resource type="Texture2D" uid="uid://fjlm54t28y6i" path="res://Assets/dogdeath1.png" id="4_5u464"]
 [ext_resource type="Script" path="res://Treats.gd" id="4_8e40i"]
 [ext_resource type="Texture2D" uid="uid://x4jkevc7a7e" path="res://Assets/bone.png" id="5_07daj"]
+[ext_resource type="Texture2D" uid="uid://dsuyrlmgb4igc" path="res://Assets/dogdeath2.png" id="5_fjpa2"]
+[ext_resource type="Texture2D" uid="uid://55j3rrvbi4rf" path="res://Assets/dogdeath3.png" id="6_f0egh"]
+[ext_resource type="Texture2D" uid="uid://2p0cdbqre6c4" path="res://Assets/dogdeath4.png" id="7_brj5m"]
+[ext_resource type="Texture2D" uid="uid://nu62jqhq4e8n" path="res://Assets/dogidlke1.png" id="8_kt8ap"]
+[ext_resource type="Texture2D" uid="uid://cgw4ld6dcssxk" path="res://Assets/dogidlke2.png" id="9_d8rrl"]
+[ext_resource type="Texture2D" uid="uid://be40qcbfs6dt1" path="res://Assets/dogjump1.png" id="10_23cx2"]
+[ext_resource type="Texture2D" uid="uid://2cuki752n4c4" path="res://Assets/dogjump2.png" id="11_6pi5b"]
+[ext_resource type="Texture2D" uid="uid://4utqgb7yt6j7" path="res://Assets/dogjump3.png" id="12_gw0py"]
+[ext_resource type="Texture2D" uid="uid://df170sllrij3l" path="res://Assets/dogjump4.png" id="13_rjcrm"]
+[ext_resource type="Texture2D" uid="uid://sata1xa1y073" path="res://Assets/dogswim1.png" id="14_m8mtt"]
+[ext_resource type="Texture2D" uid="uid://cplabophgfjnx" path="res://Assets/dogswim2.png" id="15_frwkh"]
+[ext_resource type="Texture2D" uid="uid://bu6qte7bdpn54" path="res://Assets/dogswim3.png" id="16_u30kt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_353vg"]
 size = Vector2(23, 22)
@@ -13,14 +28,84 @@ size = Vector2(23, 22)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_a46s6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2a837")
+}],
+"loop": false,
+"name": &"dog_attack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_5u464")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fjpa2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_f0egh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_brj5m")
+}],
+"loop": false,
+"name": &"dog_death",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_kt8ap")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_d8rrl")
+}],
+"loop": true,
+"name": &"dog_idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_23cx2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_6pi5b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_gw0py")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_rjcrm")
+}],
+"loop": false,
+"name": &"dog_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_m8mtt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_frwkh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_u30kt")
+}],
+"loop": false,
+"name": &"dog_swim",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("2_8otrx")
 }, {
 "duration": 1.0,
 "texture": ExtResource("3_wbr7v")
 }],
 "loop": false,
-"name": &"dogwalk",
-"speed": 5.0
+"name": &"dog_walk",
+"speed": 6.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnchj"]
@@ -68,7 +153,7 @@ shape = SubResource("RectangleShape2D_353vg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, -1)
 sprite_frames = SubResource("SpriteFrames_fwyh0")
-animation = &"dogwalk"
+animation = &"dog_walk"
 frame = 1
 frame_progress = 1.0
 

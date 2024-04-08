@@ -43,18 +43,19 @@ func player_animations():
 	if Input.is_action_pressed("ui_left") || Input.is_action_just_released("ui_accept"):
 		$AnimatedSprite2D.flip_h = true
 		$AttackBox.position.x = -55
-		$AnimatedSprite2D.play("dogwalk")
+		$AnimatedSprite2D.play("dog_walk")
 		
 	#on right (add is_action_just_released so you continue running after jumping)
 	if Input.is_action_pressed("ui_right") || Input.is_action_just_released("ui_accept"):
 		$AnimatedSprite2D.flip_h = false
 		$AttackBox.position.x = 0
-		$AnimatedSprite2D.play("dogwalk")
+		$AnimatedSprite2D.play("dog_walk")
 
-	
-	#on idle if nothing is being pressed
-	#if !Input.is_anything_pressed():
-	#	$AnimatedSprite2D.play("idle")
+	#on jump
+	if  Input.is_action_pressed("ui_accept") and is_on_floor():
+		$AnimatedSprite2D.play("dog_jump")
+		velocity.y = jump_height
+		
 		
 #singular input captures
 func _input(event):
@@ -66,13 +67,10 @@ func _input(event):
 	#on attack
 	if event.is_action_pressed("ui_attack"):
 		attack()
-		#$AnimatedSprite2D.play("attack")		
+		$AnimatedSprite2D.play("dog_attack")		
 
-	#on jump
-	if event.is_action_pressed("ui_accept") and is_on_floor():
-		velocity.y = jump_height
-		$AnimatedSprite2D.play("jump")
-	
+
+
 	if Global.is_climbing:
 		if Input.is_action_pressed("ui_up"):
 			velocity.y = -200

@@ -41,13 +41,13 @@ func horizontal_movement():
 #animations
 func player_animations():
 	#on left (add is_action_just_released so you continue running after jumping)
-	if Input.is_action_pressed("cat_left") || Input.is_action_just_released("cat_accept"):
+	if Input.is_action_pressed("cat_left") || Input.is_action_just_released("cat_jump"):
 		$AnimatedSprite2D.flip_h = false
 		$AttackBox.position.x = -50
 		$AnimatedSprite2D.play("catwalk")
 		
 	#on right (add is_action_just_released so you continue running after jumping)
-	if Input.is_action_pressed("cat_right") || Input.is_action_just_released("cat_accept"):
+	if Input.is_action_pressed("cat_right") || Input.is_action_just_released("cat_jump"):
 		$AnimatedSprite2D.flip_h = true
 		$AttackBox.position.x = 0
 		$AnimatedSprite2D.play("catwalk")
