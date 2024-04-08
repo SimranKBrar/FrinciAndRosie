@@ -5,7 +5,7 @@ var final_time
 
 var is_attacking = false
 var is_climbing = false
-
+var is_jumping = false
 	#current scene
 var current_scene_name
 

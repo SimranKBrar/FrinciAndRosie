@@ -29,12 +29,11 @@ func flip():
 	else:
 		speed = abs(speed) * -1
 
-
-
 func _on_area_2d_area_entered(area):
 	if area.get_parent().name == "Player" || area.get_parent().name == "CatPlayer":
 		Global.charDied = true
-		area.get_parent().queue_free()
+		area.get_parent().take_damage()
+		
 		
 func die():
 	queue_free()

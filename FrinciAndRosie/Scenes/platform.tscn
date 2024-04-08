@@ -7,9 +7,13 @@
 size = Vector2(64, 129)
 
 [node name="Platform" type="Area2D"]
+light_mask = 3
+visibility_layer = 3
 script = ExtResource("1_bpa8j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 3
+visibility_layer = 3
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_uyria")
 

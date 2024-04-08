@@ -1,6 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://xbyyj5lujknh"]
+[gd_scene load_steps=6 format=3 uid="uid://xbyyj5lujknh"]
 
 [ext_resource type="Script" path="res://Scenes/main_menu.gd" id="1_ojkes"]
+[ext_resource type="Texture2D" uid="uid://cxk3icj0vblox" path="res://Scenes/Screenshot_2024-04-07_at_11.52.31_PM.webp" id="2_4khuu"]
+[ext_resource type="AudioStream" uid="uid://cn5icgtye7kyl" path="res://Scenes/kl-peach-game-over-iii-142453.mp3" id="2_l8nr8"]
+
+[sub_resource type="Theme" id="Theme_jhnnn"]
+
+[sub_resource type="FontFile" id="FontFile_j4ntu"]
+cache/0/40/0/ascent = 0.0
+cache/0/40/0/descent = 0.0
+cache/0/40/0/underline_position = 0.0
+cache/0/40/0/underline_thickness = 0.0
+cache/0/40/0/scale = 1.0
+cache/0/40/0/kerning_overrides/40/0 = Vector2(0, 0)
+cache/0/40/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/40/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [node name="MainMenu" type="CanvasLayer"]
 process_mode = 3
@@ -14,22 +34,30 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.513726, 0.25098, 0.25098, 1)
 
+[node name="Sprite2D" type="Sprite2D" parent="Menu"]
+position = Vector2(575.019, 322.141)
+scale = Vector2(1.19624, 1.04963)
+texture = ExtResource("2_4khuu")
+
 [node name="ColorRect" type="ColorRect" parent="Menu"]
 layout_mode = 0
-offset_left = 35.0
-offset_top = 25.0
-offset_right = 1113.0
-offset_bottom = 605.0
-color = Color(0.588235, 0.270588, 0.270588, 1)
+offset_left = 38.0
+offset_top = 40.0
+offset_right = 1116.0
+offset_bottom = 620.0
+color = Color(0, 0, 0, 0.533333)
 
 [node name="Label" type="Label" parent="Menu/ColorRect"]
 layout_mode = 0
 offset_left = 299.0
 offset_top = 20.0
-offset_right = 534.0
+offset_right = 778.0
 offset_bottom = 75.0
+theme = SubResource("Theme_jhnnn")
+theme_override_fonts/font = SubResource("FontFile_j4ntu")
 theme_override_font_sizes/font_size = 40
-text = "Frinci and Rosie"
+text = "FRINCI AND ROSIE"
+horizontal_alignment = 1
 
 [node name="ButtonNew" type="Button" parent="Menu/ColorRect"]
 layout_mode = 0
@@ -57,6 +85,9 @@ offset_right = 785.0
 offset_bottom = 480.0
 theme_override_font_sizes/font_size = 35
 text = "Quit Game"
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_l8nr8")
 
 [connection signal="pressed" from="Menu/ColorRect/ButtonNew" to="." method="_on_button_new_pressed"]
 [connection signal="pressed" from="Menu/ColorRect/ButtonLoad" to="." method="_on_button_load_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cabtvs5sspg42"]
+[gd_scene load_steps=32 format=3 uid="uid://cabtvs5sspg42"]
 
 [ext_resource type="PackedScene" uid="uid://bgfl4ut0c54t8" path="res://Scenes/player.tscn" id="1_nq202"]
 [ext_resource type="Texture2D" uid="uid://ct7dx67yam2db" path="res://Assets/watertub.png" id="2_l8tqy"]
@@ -14,9 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://cmwn28nd8vt2f" path="res://ladder.tscn" id="11_wftc2"]
 [ext_resource type="PackedScene" uid="uid://cgbfwqp3cnce" path="res://level_end_point.tscn" id="12_6jyth"]
 [ext_resource type="PackedScene" uid="uid://dqgga6pwi600m" path="res://Scenes/Main_3.tscn" id="13_dhdbw"]
+[ext_resource type="PackedScene" uid="uid://d1pd67sovoyon" path="res://Scenes/cat_player.tscn" id="13_o4d1e"]
 [ext_resource type="PackedScene" uid="uid://dh3ifk2je512g" path="res://Scenes/wall_system.tscn" id="15_0blnh"]
 [ext_resource type="PackedScene" uid="uid://c7fge31cjtub4" path="res://Scenes/water_tub.tscn" id="16_q6rhm"]
 [ext_resource type="PackedScene" uid="uid://3ymlbjwy03py" path="res://Scenes/vacuum.tscn" id="17_7ohra"]
+[ext_resource type="PackedScene" uid="uid://bcj6yussbevxf" path="res://Scenes/pickup.tscn" id="17_c0osx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1a6b"]
 texture = ExtResource("2_l8tqy")
@@ -719,8 +721,11 @@ layer_1/tile_data = PackedInt32Array(1048575, 5, 0, 1310719, 5, 0, 1572863, 5, 0
 position = Vector2(76, 584)
 scale = Vector2(2, 2)
 
+[node name="CatPlayer" parent="." instance=ExtResource("13_o4d1e")]
+position = Vector2(218, 584)
+
 [node name="Level EndPoint" parent="." instance=ExtResource("12_6jyth")]
-position = Vector2(514, 90)
+position = Vector2(513, 93)
 next_level = ExtResource("13_dhdbw")
 
 [node name="Ladder" parent="." instance=ExtResource("11_wftc2")]
@@ -738,14 +743,35 @@ position = Vector2(619, 545)
 [node name="Ghost" parent="." instance=ExtResource("11_gyhdt")]
 position = Vector2(845, 188)
 
+[node name="Pickup" parent="." instance=ExtResource("17_c0osx")]
+position = Vector2(1084, 340)
+
 [node name="WaterTub" parent="." instance=ExtResource("16_q6rhm")]
-position = Vector2(329, 247)
+position = Vector2(328, 249)
+scale = Vector2(1.4, 1.2)
+
+[node name="Pickup2" parent="." instance=ExtResource("17_c0osx")]
+position = Vector2(830, 460)
+
+[node name="Pickup3" parent="." instance=ExtResource("17_c0osx")]
+position = Vector2(373, 341)
+
+[node name="Pickup4" parent="." instance=ExtResource("17_c0osx")]
+position = Vector2(459, 213)
+
+[node name="Pickup5" parent="." instance=ExtResource("17_c0osx")]
+position = Vector2(412, 468)
+
+[node name="Pickup6" parent="." instance=ExtResource("17_c0osx")]
+position = Vector2(1032, 597)
 
 [node name="WaterTub2" parent="." instance=ExtResource("16_q6rhm")]
-position = Vector2(247, 375)
+position = Vector2(248, 377)
+scale = Vector2(1.4, 1.2)
 
 [node name="WaterTub3" parent="." instance=ExtResource("16_q6rhm")]
 position = Vector2(711, 249)
+scale = Vector2(1.4, 1.2)
 
 [node name="Ghost3" parent="." instance=ExtResource("11_gyhdt")]
 position = Vector2(711, 447)

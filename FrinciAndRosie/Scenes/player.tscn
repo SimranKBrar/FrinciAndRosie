@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bgfl4ut0c54t8"]
+[gd_scene load_steps=32 format=3 uid="uid://bgfl4ut0c54t8"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_e5fsk"]
 [ext_resource type="Texture2D" uid="uid://b4edxm440muh8" path="res://Assets/Sprite-0001-Recovered3.png" id="2_8otrx"]
@@ -20,6 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://sata1xa1y073" path="res://Assets/dogswim1.png" id="14_m8mtt"]
 [ext_resource type="Texture2D" uid="uid://cplabophgfjnx" path="res://Assets/dogswim2.png" id="15_frwkh"]
 [ext_resource type="Texture2D" uid="uid://bu6qte7bdpn54" path="res://Assets/dogswim3.png" id="16_u30kt"]
+[ext_resource type="AudioStream" uid="uid://bbqn6pk415gvo" path="res://Scenes/8bit-music-for-game-68698.mp3" id="21_8r1ff"]
+[ext_resource type="AudioStream" uid="uid://cn5icgtye7kyl" path="res://Scenes/kl-peach-game-over-iii-142453.mp3" id="22_rj5jp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_353vg"]
 size = Vector2(23, 22)
@@ -33,7 +35,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_2a837")
 }],
-"loop": false,
+"loop": true,
 "name": &"dog_attack",
 "speed": 3.0
 }, {
@@ -41,7 +43,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_5u464")
 }, {
-"duration": 1.0,
+"duration": 1.1,
 "texture": ExtResource("5_fjpa2")
 }, {
 "duration": 1.0,
@@ -92,7 +94,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("16_u30kt")
 }],
-"loop": false,
+"loop": true,
 "name": &"dog_swim",
 "speed": 7.0
 }, {
@@ -103,7 +105,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_wbr7v")
 }],
-"loop": false,
+"loop": true,
 "name": &"dog_walk",
 "speed": 6.0
 }]
@@ -153,8 +155,8 @@ shape = SubResource("RectangleShape2D_353vg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, -1)
 sprite_frames = SubResource("SpriteFrames_fwyh0")
-animation = &"dog_walk"
-frame = 1
+animation = &"dog_death"
+frame = 3
 frame_progress = 1.0
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -172,10 +174,9 @@ shape = SubResource("CircleShape2D_y0y1r")
 
 [node name="GameOver" type="CanvasLayer" parent="."]
 process_mode = 3
+visible = false
 
 [node name="Menu" type="ColorRect" parent="GameOver"]
-visible = false
-modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -223,7 +224,7 @@ offset_bottom = 122.0
 grow_horizontal = 2
 theme = SubResource("Theme_p6f27")
 theme_override_font_sizes/font_size = 40
-text = "Game Over!"
+text = "you died!"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
@@ -267,7 +268,7 @@ grow_horizontal = 0
 grow_vertical = 2
 text = "0	"
 
-[node name="RestartButton" type="Button" parent="GameOver/Menu/Container"]
+[node name="RestartButtonGameOver" type="Button" parent="GameOver/Menu/Container"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -396,7 +397,14 @@ theme_override_font_sizes/font_size = 32
 text = "0"
 vertical_alignment = 1
 
-[connection signal="pressed" from="GameOver/Menu/Container/RestartButton" to="." method="_on_restart_button_pressed"]
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_8r1ff")
+
+[node name="PauseMenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_rj5jp")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="pressed" from="GameOver/Menu/Container/RestartButtonGameOver" to="." method="_on_restart_button_game_over_pressed"]
 [connection signal="pressed" from="GameOver/Menu/Container/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="PauseMenu/Menu/ColorRect/ButtonResume" to="." method="_on_button_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/Menu/ColorRect/ButtonSave" to="." method="_on_button_save_pressed"]

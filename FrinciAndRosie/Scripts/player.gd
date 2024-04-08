@@ -3,13 +3,14 @@ extends CharacterBody2D
 #player movement variables
 @export var speed = 300
 @export var gravity = 300
-@export var jump_height = -300
+@export var jump_height = -55
 
 signal update_lives(lives, max_lives)
 
 	# health stats
-var max_lives = 3
-var lives = 3
+var max_lives = 1
+var lives = 1
+
 signal update_bones(treats)
 var level_start_time = Time.get_ticks_msec()
 func add_pickup():
@@ -56,20 +57,23 @@ func player_animations():
 		$AnimatedSprite2D.play("dog_jump")
 		velocity.y = jump_height
 		
-		
+			#on idle if nothing is being pressed
+	if !Input.is_anything_pressed():
+		$AnimatedSprite2D.play("dog_idle")
 #singular input captures
 func _input(event):
 	if event.is_action_pressed("ui_pause"):
 	#pause scene
 		get_tree().paused = true
 		#show menu
+		$BackgroundMusic.stop()
 		$PauseMenu.visible = true
+		
+		$PauseMenuMusic.play()
 	#on attack
 	if event.is_action_pressed("ui_attack"):
 		attack()
 		$AnimatedSprite2D.play("dog_attack")		
-
-
 
 	if Global.is_climbing:
 		if Input.is_action_pressed("ui_up"):
@@ -85,6 +89,7 @@ func _on_animated_sprite_2d_animation_finished():
 	Global.is_attacking = false
 #	is_climbing = false	
 
+
 func attack():
 
 	Global.is_attacking = true
@@ -98,17 +103,24 @@ func attack():
 
 
 func _on_restart_button_pressed():
+	$BackgroundMusic.play()
 	get_tree().paused = false
 	$UI/Menu.visible = false
 	get_tree().reload_current_scene()
 
-
+func _on_restart_button_game_over_pressed():
+	$BackgroundMusic.play()
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+	
 func _on_menu_button_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 
 func _on_button_resume_pressed():
 	#unpause scene
+	$PauseMenuMusic.stop()
+	$BackgroundMusic.play()
 	get_tree().paused = false
 	#hide menu
 	$PauseMenu.visible = false
@@ -116,7 +128,6 @@ func _on_button_resume_pressed():
 
 func _on_button_save_pressed():
 	Global.save_game()
-
 
 
 func _on_button_load_pressed():
@@ -133,11 +144,15 @@ func _on_button_quit_pressed():
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 	
 func _ready():
+	
+
+	$BackgroundMusic.play()
 	#updates our UI labels when signals are emitted
 	update_bones.connect($UI/Treats.update_bones)
 
 	#show our correct lives value on load
 	$UI/Treats/Label.text = str(Global.treats)
+	
 func _process(delta):
 	if lives <= 0:
 		emit_signal("character_died")
@@ -151,3 +166,12 @@ func final_score_time_and_rating():
 	var time_rounded = str(roundf(time_taken)) + " secs"
 	print(time_rounded)
 	Global.final_time = time_rounded
+	
+func take_damage():
+	print("takedamge")
+	$AnimatedSprite2D.play("dog_death")
+	get_tree().paused = true
+	#show menu
+	Global.treats = 0 
+	$GameOver.visible = true
+

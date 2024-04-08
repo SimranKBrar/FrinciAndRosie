@@ -6,8 +6,8 @@ var player2_on_collision = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$UI/Menu.visible = false
-	$Death/Menu.visible = false
 	
+
 
 func _on_body_entered(body):
 	if body.name == "Player":
@@ -26,7 +26,7 @@ func proceed_to_next_level():
 	$UI/Menu.visible = true
 	# animation to make menu's modular value visible
 	$AnimationPlayer.play("ui_visibility")
-	
+	 
 
 func _on_restart_button_pressed():
 	get_tree().paused = false
@@ -35,11 +35,8 @@ func _on_restart_button_pressed():
 
 
 func _on_continue_button_pressed():
-	get_tree().paused = false
-	$UI/Menu.visible = false
-	get_tree().change_scene_to_packed(next_level)
-	# Extract the name of the packed scene file and update the current scene's name in the Global script
-	var path = next_level.resource_path
-	var scene_name = path.get_file().split(".")[0]
-	Global.current_scene_name = scene_name
+	get_tree().quit()
 
+func _process(delta):
+	if Global.charDied:
+		proceed_to_next_level()

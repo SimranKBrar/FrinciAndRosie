@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgbfwqp3cnce"]
+[gd_scene load_steps=10 format=3 uid="uid://duobrku8kiao7"]
 
-[ext_resource type="Script" path="res://level_end_point.gd" id="1_knsrv"]
-[ext_resource type="Texture2D" uid="uid://b07ef8f53jtt2" path="res://Assets/cat bowl.png" id="2_14jfq"]
-[ext_resource type="Texture2D" uid="uid://dmyx0apjvh3bg" path="res://Assets/dogbowl.png" id="2_icc68"]
+[ext_resource type="Script" path="res://Scenes/game_won.gd" id="1_fji0a"]
+[ext_resource type="Texture2D" uid="uid://b07ef8f53jtt2" path="res://Assets/cat bowl.png" id="2_1idrr"]
+[ext_resource type="Texture2D" uid="uid://dmyx0apjvh3bg" path="res://Assets/dogbowl.png" id="3_b7nt7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8taaf"]
 radius = 16.0312
@@ -36,11 +36,11 @@ _data = {
 "ui_visibility": SubResource("Animation_uohu0")
 }
 
-[node name="Level EndPoint" type="Area2D"]
+[node name="GameWon" type="Area2D"]
 process_mode = 3
 collision_layer = 3
 collision_mask = 3
-script = ExtResource("1_knsrv")
+script = ExtResource("1_fji0a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, -12)
@@ -53,17 +53,17 @@ shape = SubResource("CircleShape2D_8taaf")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-12, -19)
 scale = Vector2(1.07813, 1.03125)
-texture = ExtResource("2_14jfq")
+texture = ExtResource("2_1idrr")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(181, -17)
 scale = Vector2(1.07813, 1.03125)
-texture = ExtResource("2_icc68")
+texture = ExtResource("3_b7nt7")
 
 [node name="UI" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Menu" type="ColorRect" parent="UI"]
-modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -110,7 +110,7 @@ offset_right = 252.0
 offset_bottom = 122.0
 grow_horizontal = 2
 theme = SubResource("Theme_k3sww")
-text = "Level Complete!"
+text = "gameover!"
 uppercase = true
 
 [node name="TimeCompleted" type="ColorRect" parent="UI/Menu/Container"]
@@ -176,125 +176,7 @@ offset_right = 525.0
 offset_bottom = -115.0
 grow_vertical = 0
 theme = SubResource("Theme_vpf0r")
-text = "Continue"
-
-[node name="Death" type="CanvasLayer" parent="."]
-
-[node name="Menu" type="ColorRect" parent="Death"]
-modulate = Color(1, 1, 1, 0)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.34902, 0.486275, 0.956863, 1)
-
-[node name="Container" type="ColorRect" parent="Death/Menu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 35.0
-offset_top = 27.0
-offset_right = -39.0
-offset_bottom = -31.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.403922, 0.560784, 1, 1)
-
-[node name="Border" type="ColorRect" parent="Death/Menu/Container"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -150.0
-offset_right = 300.0
-offset_bottom = 200.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.501961, 0.670588, 1, 1)
-
-[node name="Label" type="Label" parent="Death/Menu/Container"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -252.0
-offset_top = 80.0
-offset_right = 252.0
-offset_bottom = 122.0
-grow_horizontal = 2
-theme = SubResource("Theme_k3sww")
-text = "you died!"
-uppercase = true
-
-[node name="TimeCompleted" type="ColorRect" parent="Death/Menu/Container"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 50.0
-offset_top = -95.0
-offset_right = 50.0
-offset_bottom = -95.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 1, 0)
-
-[node name="Label" type="Label" parent="Death/Menu/Container/TimeCompleted"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 210.0
-offset_right = 546.0
-offset_bottom = 23.0
-grow_vertical = 2
-text = "Time: "
-
-[node name="Value" type="Label" parent="Death/Menu/Container/TimeCompleted"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -668.0
-offset_right = -258.0
-offset_bottom = 27.0
-grow_horizontal = 0
-grow_vertical = 2
-text = "0	"
-
-[node name="RestartButton" type="Button" parent="Death/Menu/Container"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 545.0
-offset_top = -205.0
-offset_right = 815.0
-offset_bottom = -115.0
-grow_vertical = 0
-theme = SubResource("Theme_e6d7r")
-text = "Restart"
-
-[node name="ContinueButton" type="Button" parent="Death/Menu/Container"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 265.0
-offset_top = -205.0
-offset_right = 525.0
-offset_bottom = -115.0
-grow_vertical = 0
-theme = SubResource("Theme_vpf0r")
-text = "Continue"
+text = "Quit"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -304,5 +186,3 @@ libraries = {
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="pressed" from="UI/Menu/Container/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="UI/Menu/Container/ContinueButton" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="Death/Menu/Container/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="Death/Menu/Container/ContinueButton" to="." method="_on_continue_button_pressed"]
