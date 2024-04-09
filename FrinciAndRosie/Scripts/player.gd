@@ -3,13 +3,14 @@ extends CharacterBody2D
 #player movement variables
 @export var speed = 200
 @export var gravity = 300
-@export var jump_height = -230
+@export var jump_height = -250
 
 signal update_lives(lives, max_lives)
 
 	# health stats
 var max_lives = 1
 var lives = 1
+var isSwimming = false
 
 signal update_bones(treats)
 var level_start_time = Time.get_ticks_msec()
@@ -17,19 +18,21 @@ func add_pickup():
 	Global.treats += 1  # Update global treat count
 	update_bones.emit(Global.treats)  # Emit signal for UI update
 	print(Global.treats)
-#movement and physics
+	#movement and physics
+
 func _physics_process(delta):
-	# vertical movement velocity (down)
-	velocity.y += gravity * delta
-	# horizontal movement processing (left, right)
-	horizontal_movement()
-	
-	#applies movement
-	move_and_slide() 
-	
-	#applies animations
-	if !Global.is_attacking:
-		player_animations()
+	if $AnimatedSprite2D.animation != "dog_death":
+		# vertical movement velocity (down)
+		velocity.y += gravity * delta
+		# horizontal movement processing (left, right)
+		horizontal_movement()
+		
+		#applies movement
+		move_and_slide() 
+		
+		#applies animations
+		if !Global.is_attacking:
+			player_animations()
 		
 #horizontal movement calculation
 func horizontal_movement():
@@ -40,28 +43,41 @@ func horizontal_movement():
 
 #animations
 func player_animations():
-	#on left (add is_action_just_released so you continue running after jumping)
-	if Input.is_action_pressed("ui_left") || Input.is_action_just_released("ui_accept"):
-		$AnimatedSprite2D.flip_h = true
-		$AttackBox.position.x = -55
-		if $AnimatedSprite2D.animation != "dog_jump" || is_on_floor():
-			$AnimatedSprite2D.play("dog_walk")
-		
-	#on right (add is_action_just_released so you continue running after jumping)
-	if Input.is_action_pressed("ui_right") || Input.is_action_just_released("ui_accept"):
-		$AnimatedSprite2D.flip_h = false
-		$AttackBox.position.x = 0
-		if $AnimatedSprite2D.animation != "dog_jump" || is_on_floor():
-			$AnimatedSprite2D.play("dog_walk")
+	if $AnimatedSprite2D.animation != "dog_death":
+		if isSwimming:
+			$AnimatedSprite2D.play("dog_swim")
+			
+		if  Input.is_action_pressed("ui_accept"):
+			$AnimatedSprite2D.play("dog_jump")
+			if is_on_floor():
+				velocity.y = jump_height
 
-	#on jump
-	if  Input.is_action_pressed("ui_accept") and is_on_floor():
-		$AnimatedSprite2D.play("dog_jump")
-		velocity.y = jump_height
-		
-			#on idle if nothing is being pressed
-	if !Input.is_anything_pressed():
-		$AnimatedSprite2D.play("dog_idle")
+		#on left (add is_action_just_released so you continue running after jumping)
+		if Input.is_action_pressed("ui_left") || Input.is_action_just_released("ui_accept"):
+			$AnimatedSprite2D.flip_h = true
+			$AttackBox.position.x = -55
+			if (
+				($AnimatedSprite2D.animation != "dog_attack" || ($AnimatedSprite2D.animation == "dog_attack" && !$AnimatedSprite2D.is_playing())) 
+				&& ($AnimatedSprite2D.animation != "dog_jump" || is_on_floor())
+				&& ($AnimatedSprite2D.animation != "dog_swim")
+				):
+				$AnimatedSprite2D.play("dog_walk")
+
+		#on right (add is_action_just_released so you continue running after jumping)
+		if Input.is_action_pressed("ui_right") || Input.is_action_just_released("ui_accept"):
+			$AnimatedSprite2D.flip_h = false
+			$AttackBox.position.x = 0
+			if (
+				($AnimatedSprite2D.animation != "dog_attack" || ($AnimatedSprite2D.animation == "dog_attack" && !$AnimatedSprite2D.is_playing())) 
+				&& ($AnimatedSprite2D.animation != "dog_jump" || is_on_floor())
+				&& ($AnimatedSprite2D.animation != "dog_swim")
+				):
+				$AnimatedSprite2D.play("dog_walk")
+
+		#on idle if nothing is being pressed
+		if !Input.is_anything_pressed() && not $AnimatedSprite2D.is_playing():
+			$AnimatedSprite2D.play("dog_idle")
+
 #singular input captures
 func _input(event):
 	if event.is_action_pressed("ui_pause"):
@@ -145,14 +161,13 @@ func _on_button_quit_pressed():
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 	
 func _ready():
-	
-
 	$BackgroundMusic.play()
 	#updates our UI labels when signals are emitted
 	update_bones.connect($UI/Treats.update_bones)
-
 	#show our correct lives value on load
 	$UI/Treats/Label.text = str(Global.treats)
+	
+	$AnimatedSprite2D.play("dog_idle")
 	
 func _process(delta):
 	if lives <= 0:
@@ -168,9 +183,12 @@ func final_score_time_and_rating():
 	print(time_rounded)
 	Global.final_time = time_rounded
 	
+func swim(param):
+	isSwimming = param
+
 func take_damage():
-	print("takedamge")
 	$AnimatedSprite2D.play("dog_death")
+	await $AnimatedSprite2D.animation_finished
 	get_tree().paused = true
 	#show menu
 	Global.treats = 0 

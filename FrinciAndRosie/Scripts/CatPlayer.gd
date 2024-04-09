@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 #player movement variables
-@export var speed = 300
+@export var speed = 200
 @export var gravity = 300
-@export var jump_height = -300
+@export var jump_height = -250
 
 var max_lives = 3
 var lives = 3

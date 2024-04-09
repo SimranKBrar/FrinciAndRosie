@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bmtd57730eud3"]
 
-[ext_resource type="Script" path="res://level_end_point.gd" id="1_chcga"]
+[ext_resource type="Script" path="res://Scripts/level_end_point.gd" id="1_chcga"]
 [ext_resource type="Texture2D" uid="uid://dkxu2e7r1h8le" path="res://Assets/meatTreat.png" id="2_f8kxk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8taaf"]

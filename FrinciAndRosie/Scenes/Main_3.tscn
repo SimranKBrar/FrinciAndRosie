@@ -11,10 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://vi02y0qfewrn" path="res://Assets/tilemapv2.png" id="9_fxw5e"]
 [ext_resource type="PackedScene" uid="uid://bgfl4ut0c54t8" path="res://Scenes/player.tscn" id="10_hm8n1"]
 [ext_resource type="PackedScene" uid="uid://c7fge31cjtub4" path="res://Scenes/water_tub.tscn" id="10_o3xc0"]
-[ext_resource type="PackedScene" uid="uid://cmwn28nd8vt2f" path="res://ladder.tscn" id="11_1ybh1"]
+[ext_resource type="PackedScene" uid="uid://cmwn28nd8vt2f" path="res://Scenes/ladder.tscn" id="11_1ybh1"]
 [ext_resource type="PackedScene" uid="uid://bcj6yussbevxf" path="res://Scenes/pickup.tscn" id="11_3g2iu"]
-[ext_resource type="PackedScene" uid="uid://cjy4wx1moqdgr" path="res://ghost.tscn" id="12_kommt"]
-[ext_resource type="PackedScene" uid="uid://duobrku8kiao7" path="res://Scenes/game_won.tscn" id="13_ln48n"]
+[ext_resource type="PackedScene" uid="uid://cjy4wx1moqdgr" path="res://Scenes/ghost.tscn" id="12_kommt"]
+[ext_resource type="PackedScene" path="res://Scenes/game_won.tscn" id="13_ln48n"]
 [ext_resource type="PackedScene" uid="uid://d1pd67sovoyon" path="res://Scenes/cat_player.tscn" id="14_lm6ic"]
 [ext_resource type="PackedScene" uid="uid://3ymlbjwy03py" path="res://Scenes/vacuum.tscn" id="14_nolei"]
 

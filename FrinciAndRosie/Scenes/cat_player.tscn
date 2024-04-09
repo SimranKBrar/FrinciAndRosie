@@ -1,6 +1,6 @@
 [gd_scene load_steps=29 format=3 uid="uid://d1pd67sovoyon"]
 
-[ext_resource type="Script" path="res://CatPlayer.gd" id="1_i1tag"]
+[ext_resource type="Script" path="res://Scripts/CatPlayer.gd" id="1_i1tag"]
 [ext_resource type="Texture2D" uid="uid://d4ecfr06d8w37" path="res://Assets/catattack1.png" id="2_dxdjh"]
 [ext_resource type="Texture2D" uid="uid://cbjredmhnm3bv" path="res://Assets/Sprite-0002-Recovered1.png" id="2_m5cmp"]
 [ext_resource type="Texture2D" uid="uid://du7vuo3n2r16i" path="res://Assets/Sprite-0002-Recovered2.png" id="3_h8567"]

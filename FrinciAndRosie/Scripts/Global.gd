@@ -62,6 +62,18 @@ func load_game():
 		print("Loading game.")
 	else:
 		print("An error occurred while loading the game")
+		var current_scene = get_tree().current_scene
+		# Free the current scene if it exists
+		if current_scene:
+			current_scene.queue_free()
+		var new_scene = load("res://Scenes/Main.tscn").instantiate()
+		get_tree().root.add_child(new_scene)
+		# Set the new scene as the current scene
+		get_tree().set_current_scene(new_scene)
+		# Update the global variable with the name of the new scene
+		Global.current_scene_name = new_scene.name
+		# Ensures scene isn't paused
+		get_tree().paused = false
 	
 func clean_scene_name(scene_name):
 	var at_position = scene_name.find("@")

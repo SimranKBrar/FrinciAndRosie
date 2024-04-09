@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cgbfwqp3cnce"]
 
-[ext_resource type="Script" path="res://level_end_point.gd" id="1_knsrv"]
+[ext_resource type="Script" path="res://Scripts/level_end_point.gd" id="1_knsrv"]
 [ext_resource type="Texture2D" uid="uid://b07ef8f53jtt2" path="res://Assets/cat bowl.png" id="2_14jfq"]
 [ext_resource type="Texture2D" uid="uid://dmyx0apjvh3bg" path="res://Assets/dogbowl.png" id="2_icc68"]
 
