@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgbfwqp3cnce"]
+[gd_scene load_steps=12 format=3 uid="uid://cgbfwqp3cnce"]
 
 [ext_resource type="Script" path="res://Scripts/level_end_point.gd" id="1_knsrv"]
 [ext_resource type="Texture2D" uid="uid://b07ef8f53jtt2" path="res://Assets/cat bowl.png" id="2_14jfq"]
 [ext_resource type="Texture2D" uid="uid://dmyx0apjvh3bg" path="res://Assets/dogbowl.png" id="2_icc68"]
+[ext_resource type="FontFile" uid="uid://cbqxfolwklsky" path="res://Assets/QuinqueFive.otf" id="4_ss06n"]
+[ext_resource type="Texture2D" uid="uid://fi8rlgd1h5c7" path="res://Assets/vacuum.png" id="5_pnrvt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8taaf"]
 radius = 16.0312
@@ -63,7 +65,6 @@ texture = ExtResource("2_icc68")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Menu" type="ColorRect" parent="UI"]
-modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -110,6 +111,7 @@ offset_right = 252.0
 offset_bottom = 122.0
 grow_horizontal = 2
 theme = SubResource("Theme_k3sww")
+theme_override_fonts/font = ExtResource("4_ss06n")
 text = "Level Complete!"
 uppercase = true
 
@@ -132,10 +134,13 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 210.0
-offset_right = 546.0
-offset_bottom = 23.0
+offset_left = 212.0
+offset_top = 8.0
+offset_right = 548.0
+offset_bottom = 38.0
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_ss06n")
+theme_override_font_sizes/font_size = 25
 text = "Time: "
 
 [node name="Value" type="Label" parent="UI/Menu/Container/TimeCompleted"]
@@ -145,11 +150,14 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -668.0
-offset_right = -258.0
-offset_bottom = 27.0
+offset_left = -667.0
+offset_top = 7.0
+offset_right = -257.0
+offset_bottom = 37.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_ss06n")
+theme_override_font_sizes/font_size = 25
 text = "0	"
 
 [node name="RestartButton" type="Button" parent="UI/Menu/Container"]
@@ -157,12 +165,13 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 545.0
-offset_top = -205.0
-offset_right = 815.0
-offset_bottom = -115.0
+offset_left = 250.0
+offset_top = -199.0
+offset_right = 826.0
+offset_bottom = -109.0
 grow_vertical = 0
 theme = SubResource("Theme_e6d7r")
+theme_override_fonts/font = ExtResource("4_ss06n")
 text = "Restart"
 
 [node name="ContinueButton" type="Button" parent="UI/Menu/Container"]
@@ -170,15 +179,27 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 265.0
-offset_top = -205.0
-offset_right = 525.0
-offset_bottom = -115.0
+offset_left = 249.0
+offset_top = -302.0
+offset_right = 828.0
+offset_bottom = -212.0
 grow_vertical = 0
 theme = SubResource("Theme_vpf0r")
+theme_override_fonts/font = ExtResource("4_ss06n")
 text = "Continue"
 
+[node name="Sprite2D" type="Sprite2D" parent="UI/Menu/Container"]
+position = Vector2(123.25, 504.75)
+scale = Vector2(2.80469, 2.96094)
+texture = ExtResource("5_pnrvt")
+
+[node name="Sprite2D2" type="Sprite2D" parent="UI/Menu/Container"]
+position = Vector2(954, 526)
+scale = Vector2(3.62109, 3.29297)
+texture = ExtResource("2_icc68")
+
 [node name="Death" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Menu" type="ColorRect" parent="Death"]
 modulate = Color(1, 1, 1, 0)
@@ -218,6 +239,7 @@ grow_vertical = 2
 color = Color(0.501961, 0.670588, 1, 1)
 
 [node name="Label" type="Label" parent="Death/Menu/Container"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -228,10 +250,13 @@ offset_right = 252.0
 offset_bottom = 122.0
 grow_horizontal = 2
 theme = SubResource("Theme_k3sww")
+theme_override_fonts/font = ExtResource("4_ss06n")
+theme_override_font_sizes/font_size = 45
 text = "you died!"
 uppercase = true
 
 [node name="TimeCompleted" type="ColorRect" parent="Death/Menu/Container"]
+visible = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -246,6 +271,7 @@ grow_vertical = 2
 color = Color(1, 1, 1, 0)
 
 [node name="Label" type="Label" parent="Death/Menu/Container/TimeCompleted"]
+visible = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -254,9 +280,12 @@ offset_left = 210.0
 offset_right = 546.0
 offset_bottom = 23.0
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_ss06n")
+theme_override_font_sizes/font_size = 15
 text = "Time: "
 
 [node name="Value" type="Label" parent="Death/Menu/Container/TimeCompleted"]
+visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -271,6 +300,7 @@ grow_vertical = 2
 text = "0	"
 
 [node name="RestartButton" type="Button" parent="Death/Menu/Container"]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -281,9 +311,11 @@ offset_right = 815.0
 offset_bottom = -115.0
 grow_vertical = 0
 theme = SubResource("Theme_e6d7r")
+theme_override_fonts/font = ExtResource("4_ss06n")
 text = "Restart"
 
 [node name="ContinueButton" type="Button" parent="Death/Menu/Container"]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0

@@ -7,6 +7,7 @@ extends CharacterBody2D
 
 var max_lives = 3
 var lives = 3
+var isClimbing = false
 
 var level_start_time = Time.get_ticks_msec()
 
@@ -19,17 +20,18 @@ func add_pickup():
 	
 #movement and physics
 func _physics_process(delta):
-	# vertical movement velocity (down)
-	velocity.y += gravity * delta
-	# horizontal movement processing (left, right)
-	horizontal_movement()
-	
-	#applies movement
-	move_and_slide() 
-	
-	#applies animations
-	if !Global.is_attacking:
-		player_animations()
+	if $AnimatedSprite2D.animation != "cat_death":
+		# vertical movement velocity (down)
+		velocity.y += gravity * delta
+		# horizontal movement processing (left, right)
+		horizontal_movement()
+		
+		#applies movement
+		move_and_slide() 
+		
+		#applies animations
+		if !Global.is_attacking:
+			player_animations()
 		
 #horizontal movement calculation
 func horizontal_movement():
@@ -40,17 +42,44 @@ func horizontal_movement():
 
 #animations
 func player_animations():
-	#on left (add is_action_just_released so you continue running after jumping)
-	if Input.is_action_pressed("cat_left") || Input.is_action_just_released("cat_jump"):
-		$AnimatedSprite2D.flip_h = false
-		$AttackBox.position.x = -50
-		$AnimatedSprite2D.play("catwalk")
-		
-	#on right (add is_action_just_released so you continue running after jumping)
-	if Input.is_action_pressed("cat_right") || Input.is_action_just_released("cat_jump"):
-		$AnimatedSprite2D.flip_h = true
-		$AttackBox.position.x = 0
-		$AnimatedSprite2D.play("catwalk")
+	if $AnimatedSprite2D.animation != "cat_death":
+		if isClimbing:
+			$AnimatedSprite2D.play("cat_climb")
+			
+		if  Input.is_action_pressed("cat_jump"):
+			$AnimatedSprite2D.play("cat_jump")
+			if is_on_floor():
+				velocity.y = jump_height
+			if Input.is_action_pressed("cat_left"):
+				$AnimatedSprite2D.flip_h = false
+			elif Input.is_action_pressed("cat_right"):
+				$AnimatedSprite2D.flip_h = true
+
+		#on left (add is_action_just_released so you continue running after jumping)
+		if Input.is_action_pressed("cat_left") || Input.is_action_just_released("cat_jump"):
+			$AnimatedSprite2D.flip_h = false
+			$AttackBox.position.x = -55
+			if (
+				($AnimatedSprite2D.animation != "cat_attack" || ($AnimatedSprite2D.animation == "cat_attack" && !$AnimatedSprite2D.is_playing())) 
+				&& ($AnimatedSprite2D.animation != "cat_jump" || is_on_floor())
+				&& ($AnimatedSprite2D.animation != "cat_climb")
+				):
+				$AnimatedSprite2D.play("catwalk")
+
+		#on right (add is_action_just_released so you continue running after jumping)
+		if Input.is_action_pressed("cat_right") || Input.is_action_just_released("cat_jump"):
+			$AnimatedSprite2D.flip_h = true
+			$AttackBox.position.x = 0
+			if (
+				($AnimatedSprite2D.animation != "cat_attack" || ($AnimatedSprite2D.animation == "cat_attack" && !$AnimatedSprite2D.is_playing())) 
+				&& ($AnimatedSprite2D.animation != "cat_jump" || is_on_floor())
+				&& ($AnimatedSprite2D.animation != "cat_climb")
+				):
+				$AnimatedSprite2D.play("catwalk")
+
+		#on idle if nothing is being pressed
+		if !Input.is_anything_pressed() && not $AnimatedSprite2D.is_playing():
+			$AnimatedSprite2D.play("cat_idle")
 
 	
 	#on idle if nothing is being pressed
@@ -66,19 +95,16 @@ func _input(event):
 		$PauseMenu.visible = true
 	#on attack
 	if event.is_action_pressed("cat_attack"):
+		$AnimatedSprite2D.play("cat_attack")
 		attack()
 		#$AnimatedSprite2D.play("attack")		
 
-	#on jump
-	if event.is_action_pressed("cat_jump") and is_on_floor():
-		velocity.y = jump_height
-		$AnimatedSprite2D.play("jump")
-	
 	#on climbing ladders
-	if Global.is_climbing == true:
+	if Global.is_climbing:
 		if Input.is_action_pressed("cat_up"):
-			gravity = 100
 			velocity.y = -200
+		elif Input.is_action_pressed("cat_down"):
+			velocity.y = 200
 		
 	#reset gravity
 	else:
@@ -104,13 +130,11 @@ func attack():
 
 func _on_restart_button_pressed():
 	get_tree().paused = false
-	$UI/Menu.visible = false
 	get_tree().reload_current_scene()
 
 
 func _on_menu_button_pressed():
-	pass # Replace with function body.
-
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 func _on_button_resume_pressed():
 	#unpause scene
@@ -127,7 +151,9 @@ func _on_button_save_pressed():
 func _on_button_load_pressed():
 	pass # Replace with function body.
 
-
+func _ready():
+	$AnimatedSprite2D.play("cat_idle")
+	
 func _on_button_quit_pressed():
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
@@ -137,4 +163,19 @@ func final_score_time_and_rating():
 	var time_rounded = str(roundf(time_taken)) + " secs"
 	print(time_rounded)
 	Global.final_time = time_rounded
+	
+func climb(param):
+	isClimbing = param
+	
+func take_damage():
+	$AnimatedSprite2D.play("cat_death")
+	await $AnimatedSprite2D.animation_finished
+	
+	get_tree().paused = true
+	
+	#show menu
+	Global.treats = 0 
+	print("paused")
+	$GameOver.visible = true
+	print("about to pause")
 

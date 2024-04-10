@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bgfl4ut0c54t8"]
+[gd_scene load_steps=36 format=3 uid="uid://bgfl4ut0c54t8"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_e5fsk"]
 [ext_resource type="Texture2D" uid="uid://b4edxm440muh8" path="res://Assets/Sprite-0001-Recovered3.png" id="2_8otrx"]
@@ -19,9 +19,13 @@
 [ext_resource type="Texture2D" uid="uid://sata1xa1y073" path="res://Assets/dogswim1.png" id="14_m8mtt"]
 [ext_resource type="Texture2D" uid="uid://cplabophgfjnx" path="res://Assets/dogswim2.png" id="15_frwkh"]
 [ext_resource type="Texture2D" uid="uid://bu6qte7bdpn54" path="res://Assets/dogswim3.png" id="16_u30kt"]
+[ext_resource type="FontFile" uid="uid://cbqxfolwklsky" path="res://Assets/QuinqueFive.otf" id="19_hu1xv"]
 [ext_resource type="Script" path="res://Scripts/Treats.gd" id="19_oaqum"]
+[ext_resource type="Texture2D" uid="uid://ct7dx67yam2db" path="res://Assets/watertub.png" id="20_3gms5"]
 [ext_resource type="AudioStream" uid="uid://bbqn6pk415gvo" path="res://Assets/8bit-music-for-game-68698.mp3" id="21_qgua4"]
+[ext_resource type="Texture2D" uid="uid://ds8bvptbstloa" path="res://Assets/catdeath2.png" id="21_xy6c5"]
 [ext_resource type="AudioStream" uid="uid://cn5icgtye7kyl" path="res://Assets/kl-peach-game-over-iii-142453.mp3" id="22_6mnt1"]
+[ext_resource type="Texture2D" uid="uid://vjvvu3wlt54a" path="res://Assets/catclimb1.png" id="22_37y6d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_353vg"]
 size = Vector2(23, 22)
@@ -182,7 +186,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.34902, 0.486275, 0.956863, 1)
+color = Color(0.278431, 0.435294, 0.972549, 1)
 
 [node name="Container" type="ColorRect" parent="GameOver/Menu"]
 layout_mode = 1
@@ -223,6 +227,10 @@ offset_right = 252.0
 offset_bottom = 122.0
 grow_horizontal = 2
 theme = SubResource("Theme_p6f27")
+theme_override_colors/font_color = Color(0.560784, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.678431, 0, 0.172549, 1)
+theme_override_colors/font_outline_color = Color(0.662745, 0, 0.0745098, 1)
+theme_override_fonts/font = ExtResource("19_hu1xv")
 theme_override_font_sizes/font_size = 40
 text = "you died!"
 horizontal_alignment = 1
@@ -248,10 +256,13 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 210.0
-offset_right = 546.0
-offset_bottom = 23.0
+offset_left = 223.0
+offset_top = 7.0
+offset_right = 559.0
+offset_bottom = 48.0
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 35
 text = "Time: "
 
 [node name="Label2" type="Label" parent="GameOver/Menu/Container/TimeCompleted"]
@@ -261,11 +272,14 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -668.0
-offset_right = -258.0
-offset_bottom = 27.0
+offset_left = -607.0
+offset_top = 7.0
+offset_right = -197.0
+offset_bottom = 43.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 30
 text = "0	"
 
 [node name="RestartButtonGameOver" type="Button" parent="GameOver/Menu/Container"]
@@ -273,12 +287,13 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 545.0
-offset_top = -205.0
-offset_right = 815.0
-offset_bottom = -115.0
+offset_left = 248.0
+offset_top = -298.0
+offset_right = 829.0
+offset_bottom = -208.0
 grow_vertical = 0
 theme = SubResource("Theme_jbiu6")
+theme_override_fonts/font = ExtResource("19_hu1xv")
 text = "Restart"
 
 [node name="MenuButton" type="Button" parent="GameOver/Menu/Container"]
@@ -286,13 +301,29 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 265.0
-offset_top = -205.0
-offset_right = 525.0
-offset_bottom = -115.0
+offset_left = 251.0
+offset_top = -199.0
+offset_right = 826.0
+offset_bottom = -109.0
 grow_vertical = 0
 theme = SubResource("Theme_yb28x")
+theme_override_fonts/font = ExtResource("19_hu1xv")
 text = "Menu"
+
+[node name="Sprite2D" type="Sprite2D" parent="GameOver"]
+position = Vector2(149, 566)
+scale = Vector2(3.625, 2.79688)
+texture = ExtResource("20_3gms5")
+
+[node name="Sprite2D2" type="Sprite2D" parent="GameOver"]
+position = Vector2(175.5, 405.625)
+scale = Vector2(7.15625, 6.89844)
+texture = ExtResource("21_xy6c5")
+
+[node name="Sprite2D3" type="Sprite2D" parent="GameOver"]
+position = Vector2(982, 510)
+scale = Vector2(7.15625, 6.89844)
+texture = ExtResource("6_f0egh")
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 process_mode = 2
@@ -316,48 +347,63 @@ color = Color(0.588235, 0.270588, 0.270588, 1)
 
 [node name="Label" type="Label" parent="PauseMenu/Menu/ColorRect"]
 layout_mode = 0
-offset_left = 299.0
-offset_top = 20.0
-offset_right = 534.0
-offset_bottom = 75.0
-theme_override_font_sizes/font_size = 40
+offset_left = 268.0
+offset_top = 85.0
+offset_right = 808.0
+offset_bottom = 140.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 45
 text = "Pause Menu"
 
 [node name="ButtonResume" type="Button" parent="PauseMenu/Menu/ColorRect"]
 layout_mode = 0
-offset_left = 285.0
-offset_top = 100.0
-offset_right = 785.0
-offset_bottom = 180.0
-theme_override_font_sizes/font_size = 35
+offset_left = 284.0
+offset_top = 198.0
+offset_right = 784.0
+offset_bottom = 278.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 30
 text = "Resume Level"
 
 [node name="ButtonSave" type="Button" parent="PauseMenu/Menu/ColorRect"]
 layout_mode = 0
-offset_left = 285.0
-offset_top = 200.0
-offset_right = 785.0
-offset_bottom = 280.0
-theme_override_font_sizes/font_size = 35
+offset_left = 284.0
+offset_top = 292.0
+offset_right = 784.0
+offset_bottom = 372.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 30
 text = "Save Level"
 
 [node name="ButtonLoad" type="Button" parent="PauseMenu/Menu/ColorRect"]
 layout_mode = 0
 offset_left = 285.0
-offset_top = 300.0
+offset_top = 385.0
 offset_right = 785.0
-offset_bottom = 380.0
-theme_override_font_sizes/font_size = 35
+offset_bottom = 465.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 30
 text = "Load Level"
 
 [node name="ButtonQuit" type="Button" parent="PauseMenu/Menu/ColorRect"]
 layout_mode = 0
-offset_left = 285.0
-offset_top = 400.0
-offset_right = 785.0
-offset_bottom = 480.0
-theme_override_font_sizes/font_size = 35
+offset_left = 284.0
+offset_top = 478.0
+offset_right = 784.0
+offset_bottom = 558.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 30
 text = "Quit Game"
+
+[node name="Sprite2D" type="Sprite2D" parent="PauseMenu"]
+position = Vector2(983.75, 207)
+scale = Vector2(5.39062, 5.125)
+texture = ExtResource("13_rjcrm")
+
+[node name="Sprite2D2" type="Sprite2D" parent="PauseMenu"]
+position = Vector2(199, 520)
+scale = Vector2(6.17187, 5.40625)
+texture = ExtResource("22_37y6d")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 process_mode = 3
@@ -387,21 +433,114 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -38.0
+offset_left = -36.0
 offset_top = -23.0
-offset_right = 2.0
+offset_right = 4.0
 offset_bottom = 22.0
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 20
 text = "0"
 vertical_alignment = 1
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_qgua4")
+volume_db = -80.0
 
 [node name="PauseMenuMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_6mnt1")
+volume_db = -80.0
+
+[node name="Instructions" type="Popup" parent="."]
+process_mode = 2
+size = Vector2i(1152, 648)
+visible = true
+
+[node name="Menu" type="ColorRect" parent="Instructions"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0745098, 0.290196, 0.223529, 1)
+
+[node name="Label" type="Label" parent="Instructions/Menu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+
+[node name="AcceptButton" type="Button" parent="Instructions/Menu"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+
+[node name="ColorRect" type="ColorRect" parent="Instructions/Menu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Instructions/Menu/ColorRect"]
+
+[node name="Label" type="Label" parent="Instructions/Menu/ColorRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+
+[node name="ColorRect2" type="ColorRect" parent="Instructions/Menu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Instructions/Menu/ColorRect2"]
+
+[node name="Label" type="Label" parent="Instructions/Menu/ColorRect2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+
+[node name="ColorRect3" type="ColorRect" parent="Instructions/Menu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Instructions/Menu/ColorRect3"]
+
+[node name="Label" type="Label" parent="Instructions/Menu/ColorRect3"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+
+[node name="ColorRect4" type="ColorRect" parent="Instructions/Menu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Instructions/Menu/ColorRect4"]
+
+[node name="Label" type="Label" parent="Instructions/Menu/ColorRect4"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+
+[node name="ColorRect5" type="ColorRect" parent="Instructions/Menu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Instructions/Menu/ColorRect5"]
+
+[node name="Label" type="Label" parent="Instructions/Menu/ColorRect5"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="pressed" from="GameOver/Menu/Container/RestartButtonGameOver" to="." method="_on_restart_button_game_over_pressed"]
@@ -410,3 +549,5 @@ stream = ExtResource("22_6mnt1")
 [connection signal="pressed" from="PauseMenu/Menu/ColorRect/ButtonSave" to="." method="_on_button_save_pressed"]
 [connection signal="pressed" from="PauseMenu/Menu/ColorRect/ButtonLoad" to="." method="_on_button_load_pressed"]
 [connection signal="pressed" from="PauseMenu/Menu/ColorRect/ButtonQuit" to="." method="_on_button_quit_pressed"]
+[connection signal="popup_hide" from="Instructions" to="." method="_on_popup_popup_hide"]
+[connection signal="pressed" from="Instructions/Menu/AcceptButton" to="." method="_on_accept_button_pressed"]

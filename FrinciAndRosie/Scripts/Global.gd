@@ -12,7 +12,7 @@ var current_scene_name
 
 
 	# health stats
-var treats = 1
+var treats = 0
 var charDied = false
 
 const SAVE_PATH = "user://savegame.save"

@@ -51,6 +51,10 @@ func player_animations():
 			$AnimatedSprite2D.play("dog_jump")
 			if is_on_floor():
 				velocity.y = jump_height
+			if Input.is_action_pressed("ui_left"):
+				$AnimatedSprite2D.flip_h = false
+			elif Input.is_action_pressed("ui_right"):
+				$AnimatedSprite2D.flip_h = true
 
 		#on left (add is_action_just_released so you continue running after jumping)
 		if Input.is_action_pressed("ui_left") || Input.is_action_just_released("ui_accept"):
@@ -191,6 +195,15 @@ func take_damage():
 	await $AnimatedSprite2D.animation_finished
 	get_tree().paused = true
 	#show menu
+	$UI.visible = false
 	Global.treats = 0 
 	$GameOver.visible = true
 
+
+
+func _on_popup_popup_hide():
+	pass # Replace with function body.
+
+
+func _on_accept_button_pressed():
+	pass # Replace with function body.

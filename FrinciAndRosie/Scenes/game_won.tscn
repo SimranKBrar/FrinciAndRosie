@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://duobrku8kiao7"]
 
-[ext_resource type="Script" path="res://Scenes/game_won.gd" id="1_fji0a"]
+[ext_resource type="Script" path="res://Scripts/game_won.gd" id="1_fji0a"]
 [ext_resource type="Texture2D" uid="uid://b07ef8f53jtt2" path="res://Assets/cat bowl.png" id="2_1idrr"]
 [ext_resource type="Texture2D" uid="uid://dmyx0apjvh3bg" path="res://Assets/dogbowl.png" id="3_b7nt7"]
 

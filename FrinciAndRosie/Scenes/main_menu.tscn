@@ -1,26 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://xbyyj5lujknh"]
+[gd_scene load_steps=10 format=3 uid="uid://xbyyj5lujknh"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_ojkes"]
 [ext_resource type="Texture2D" uid="uid://cxk3icj0vblox" path="res://Assets/Screenshot_2024-04-07_at_11.52.31_PM.webp" id="2_4khuu"]
 [ext_resource type="AudioStream" uid="uid://cn5icgtye7kyl" path="res://Assets/kl-peach-game-over-iii-142453.mp3" id="2_l8nr8"]
+[ext_resource type="FontFile" uid="uid://cbqxfolwklsky" path="res://Assets/QuinqueFive.otf" id="2_qfcqg"]
+[ext_resource type="Texture2D" uid="uid://drkfougtp2xfa" path="res://Assets/movingWall.png" id="5_8qhjk"]
+[ext_resource type="Texture2D" uid="uid://cbcmkmil2q2ql" path="res://Assets/Sprite-0001-Recovered2.png" id="6_pe4nc"]
+[ext_resource type="Texture2D" uid="uid://j0d0o2vxod8i" path="res://Assets/opencardboardbox.png" id="7_3sewt"]
+[ext_resource type="Texture2D" uid="uid://cbjredmhnm3bv" path="res://Assets/Sprite-0002-Recovered1.png" id="8_nrkmf"]
 
 [sub_resource type="Theme" id="Theme_jhnnn"]
-
-[sub_resource type="FontFile" id="FontFile_j4ntu"]
-cache/0/40/0/ascent = 0.0
-cache/0/40/0/descent = 0.0
-cache/0/40/0/underline_position = 0.0
-cache/0/40/0/underline_thickness = 0.0
-cache/0/40/0/scale = 1.0
-cache/0/40/0/kerning_overrides/40/0 = Vector2(0, 0)
-cache/0/40/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/40/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [node name="MainMenu" type="CanvasLayer"]
 process_mode = 3
@@ -40,58 +29,82 @@ color = Color(0.513726, 0.25098, 0.25098, 1)
 
 [node name="ColorRect" type="ColorRect" parent="Menu"]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 38.0
-offset_right = 1189.0
-offset_bottom = 701.0
-color = Color(0, 0, 0, 0.533333)
+offset_left = 79.0
+offset_top = 75.0
+offset_right = 1138.0
+offset_bottom = 655.0
+color = Color(0, 0, 0, 0.278431)
 
 [node name="Label" type="Label" parent="Menu/ColorRect"]
 layout_mode = 0
-offset_left = 323.0
-offset_top = 36.0
-offset_right = 802.0
-offset_bottom = 91.0
+offset_left = 248.0
+offset_top = 34.0
+offset_right = 856.0
+offset_bottom = 80.0
 theme = SubResource("Theme_jhnnn")
-theme_override_fonts/font = SubResource("FontFile_j4ntu")
-theme_override_font_sizes/font_size = 40
+theme_override_fonts/font = ExtResource("2_qfcqg")
+theme_override_font_sizes/font_size = 32
 text = "FRINCI AND ROSIE"
 horizontal_alignment = 1
 
 [node name="ButtonNew" type="Button" parent="Menu/ColorRect"]
 layout_mode = 0
-offset_left = 314.0
-offset_top = 371.0
-offset_right = 814.0
-offset_bottom = 451.0
-theme_override_font_sizes/font_size = 35
+offset_left = 357.0
+offset_top = 355.0
+offset_right = 744.0
+offset_bottom = 417.0
+theme_override_fonts/font = ExtResource("2_qfcqg")
+theme_override_font_sizes/font_size = 25
 text = "New Game"
 
 [node name="ButtonLoad" type="Button" parent="Menu/ColorRect"]
 layout_mode = 0
-offset_left = 313.0
-offset_top = 460.0
-offset_right = 813.0
-offset_bottom = 540.0
-theme_override_font_sizes/font_size = 35
+offset_left = 358.0
+offset_top = 426.0
+offset_right = 744.0
+offset_bottom = 488.0
+theme_override_fonts/font = ExtResource("2_qfcqg")
+theme_override_font_sizes/font_size = 25
 text = "Load Game"
 
 [node name="ButtonQuit" type="Button" parent="Menu/ColorRect"]
 layout_mode = 0
-offset_left = 313.0
-offset_top = 550.0
-offset_right = 813.0
-offset_bottom = 630.0
-theme_override_font_sizes/font_size = 35
+offset_left = 359.0
+offset_top = 497.0
+offset_right = 745.0
+offset_bottom = 560.0
+theme_override_fonts/font = ExtResource("2_qfcqg")
+theme_override_font_sizes/font_size = 25
 text = "Quit Game"
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_l8nr8")
+volume_db = -80.0
 
 [node name="Sprite2D" type="Sprite2D" parent="BackgroundMusic"]
-position = Vector2(559, 210)
-scale = Vector2(0.460207, 0.426268)
+position = Vector2(598, 244)
+scale = Vector2(0.432583, 0.398917)
 texture = ExtResource("2_4khuu")
+
+[node name="Sprite2D3" type="Sprite2D" parent="BackgroundMusic"]
+position = Vector2(187, 457)
+scale = Vector2(2.66583, 2.41126)
+texture = ExtResource("5_8qhjk")
+
+[node name="Sprite2D4" type="Sprite2D" parent="BackgroundMusic"]
+position = Vector2(178, 222)
+scale = Vector2(5.38521, 5.38406)
+texture = ExtResource("6_pe4nc")
+
+[node name="Sprite2D2" type="Sprite2D" parent="BackgroundMusic"]
+position = Vector2(1005, 578)
+scale = Vector2(2.70099, 2.51672)
+texture = ExtResource("7_3sewt")
+
+[node name="Sprite2D5" type="Sprite2D" parent="BackgroundMusic"]
+position = Vector2(1035, 420)
+scale = Vector2(6.538, 6.63336)
+texture = ExtResource("8_nrkmf")
 
 [connection signal="pressed" from="Menu/ColorRect/ButtonNew" to="." method="_on_button_new_pressed"]
 [connection signal="pressed" from="Menu/ColorRect/ButtonLoad" to="." method="_on_button_load_pressed"]

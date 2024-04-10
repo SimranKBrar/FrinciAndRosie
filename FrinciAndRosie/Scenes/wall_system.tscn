@@ -1,13 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dh3ifk2je512g"]
+[gd_scene load_steps=7 format=3 uid="uid://dh3ifk2je512g"]
 
 [ext_resource type="Script" path="res://Scripts/WallSystem.gd" id="1_thd7o"]
 [ext_resource type="PackedScene" uid="uid://lg4xh5i44mq8" path="res://Scenes/platform.tscn" id="2_knjos"]
-[ext_resource type="Texture2D" uid="uid://cujlumivhkw0p" path="res://Assets/wodFloor.png" id="3_310da"]
+[ext_resource type="Texture2D" uid="uid://bgw3wd1l3x405" path="res://Assets/pressureplate.png" id="3_qih0w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a2ynh"]
+size = Vector2(63, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kknxg"]
 size = Vector2(62, 15)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_e28le"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_nhl6v"]
 
 [node name="WallSystem" type="Area2D"]
 light_mask = 3
@@ -18,22 +21,28 @@ script = ExtResource("1_thd7o")
 collision_layer = 3
 collision_mask = 3
 
+[node name="StaticBody2D" type="StaticBody2D" parent="Platform"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/StaticBody2D"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_a2ynh")
+
 [node name="PressurePlate" type="Area2D" parent="."]
 light_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PressurePlate"]
-position = Vector2(-88, 49.5)
+position = Vector2(-138, 56)
 shape = SubResource("RectangleShape2D_kknxg")
 
 [node name="Sprite2D" type="Sprite2D" parent="PressurePlate"]
-position = Vector2(-88, 49)
+position = Vector2(-139, 60)
 scale = Vector2(1, 0.25)
-texture = ExtResource("3_310da")
+texture = ExtResource("3_qih0w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-light_mask = 3
-visibility_layer = 3
-shape = SubResource("CircleShape2D_e28le")
+shape = SubResource("CircleShape2D_nhl6v")
 
 [connection signal="area_entered" from="PressurePlate" to="." method="_on_pressure_plate_area_entered"]
 [connection signal="area_exited" from="PressurePlate" to="." method="_on_pressure_plate_area_exited"]

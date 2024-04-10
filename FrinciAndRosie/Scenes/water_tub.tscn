@@ -16,6 +16,8 @@ script = ExtResource("1_82eal")
 texture = ExtResource("1_0irwc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 3
+visibility_layer = 3
 position = Vector2(0.5, 14.5)
 shape = SubResource("RectangleShape2D_cdbjs")
 

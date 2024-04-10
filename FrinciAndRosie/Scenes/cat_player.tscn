@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://d1pd67sovoyon"]
+[gd_scene load_steps=33 format=3 uid="uid://d1pd67sovoyon"]
 
 [ext_resource type="Script" path="res://Scripts/CatPlayer.gd" id="1_i1tag"]
 [ext_resource type="Texture2D" uid="uid://d4ecfr06d8w37" path="res://Assets/catattack1.png" id="2_dxdjh"]
@@ -19,6 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://b8umi4prysqdr" path="res://Assets/catjump2.png" id="14_4bwki"]
 [ext_resource type="Texture2D" uid="uid://lcewo6bcnnbd" path="res://Assets/catjump3.png" id="15_0yoff"]
 [ext_resource type="Texture2D" uid="uid://m22mjastnpbb" path="res://Assets/catjump4.png" id="16_7mpp7"]
+[ext_resource type="FontFile" uid="uid://cbqxfolwklsky" path="res://Assets/QuinqueFive.otf" id="20_xvdpg"]
+[ext_resource type="Texture2D" uid="uid://ct7dx67yam2db" path="res://Assets/watertub.png" id="21_pyxd7"]
+[ext_resource type="Texture2D" uid="uid://55j3rrvbi4rf" path="res://Assets/dogdeath3.png" id="22_ts5wt"]
+[ext_resource type="Texture2D" uid="uid://df170sllrij3l" path="res://Assets/dogjump4.png" id="23_hseyt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_353vg"]
 size = Vector2(23, 22)
@@ -35,7 +39,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_hyoct")
 }],
-"loop": true,
+"loop": false,
 "name": &"cat_attack",
 "speed": 5.0
 }, {
@@ -46,7 +50,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("6_1imgx")
 }],
-"loop": true,
+"loop": false,
 "name": &"cat_climb",
 "speed": 5.0
 }, {
@@ -63,7 +67,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("10_ochq3")
 }],
-"loop": true,
+"loop": false,
 "name": &"cat_death",
 "speed": 5.0
 }, {
@@ -74,7 +78,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("12_1dr3p")
 }],
-"loop": true,
+"loop": false,
 "name": &"cat_idle",
 "speed": 5.0
 }, {
@@ -91,7 +95,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("16_7mpp7")
 }],
-"loop": true,
+"loop": false,
 "name": &"cat_jump",
 "speed": 5.0
 }, {
@@ -105,7 +109,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_no411")
 }],
-"loop": true,
+"loop": false,
 "name": &"catwalk",
 "speed": 5.0
 }]
@@ -156,7 +160,7 @@ shape = SubResource("RectangleShape2D_353vg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0.5, -2.5)
 sprite_frames = SubResource("SpriteFrames_dh5n1")
-animation = &"cat_attack"
+animation = &"catwalk"
 
 [node name="Hitbox" type="Area2D" parent="."]
 
@@ -173,10 +177,9 @@ shape = SubResource("CircleShape2D_y0y1r")
 
 [node name="GameOver" type="CanvasLayer" parent="."]
 process_mode = 3
+visible = false
 
 [node name="Menu" type="ColorRect" parent="GameOver"]
-visible = false
-modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -223,6 +226,9 @@ offset_right = 252.0
 offset_bottom = 122.0
 grow_horizontal = 2
 theme = SubResource("Theme_p6f27")
+theme_override_colors/font_color = Color(0.533333, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.686275, 0, 0, 1)
+theme_override_fonts/font = ExtResource("20_xvdpg")
 theme_override_font_sizes/font_size = 40
 text = "Game Over!"
 horizontal_alignment = 1
@@ -248,10 +254,13 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 210.0
-offset_right = 546.0
-offset_bottom = 23.0
+offset_left = 215.0
+offset_top = 10.0
+offset_right = 551.0
+offset_bottom = 51.0
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("20_xvdpg")
+theme_override_font_sizes/font_size = 35
 text = "Time: "
 
 [node name="Label2" type="Label" parent="GameOver/Menu/Container/TimeCompleted"]
@@ -261,11 +270,14 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -668.0
-offset_right = -258.0
-offset_bottom = 27.0
+offset_left = -615.0
+offset_top = 10.0
+offset_right = -205.0
+offset_bottom = 46.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("20_xvdpg")
+theme_override_font_sizes/font_size = 30
 text = "0	"
 
 [node name="RestartButton" type="Button" parent="GameOver/Menu/Container"]
@@ -273,12 +285,13 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 545.0
-offset_top = -205.0
-offset_right = 815.0
-offset_bottom = -115.0
+offset_left = 256.0
+offset_top = -295.0
+offset_right = 828.0
+offset_bottom = -205.0
 grow_vertical = 0
 theme = SubResource("Theme_jbiu6")
+theme_override_fonts/font = ExtResource("20_xvdpg")
 text = "Restart"
 
 [node name="MenuButton" type="Button" parent="GameOver/Menu/Container"]
@@ -286,13 +299,29 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 265.0
-offset_top = -205.0
-offset_right = 525.0
-offset_bottom = -115.0
+offset_left = 254.0
+offset_top = -196.0
+offset_right = 823.0
+offset_bottom = -106.0
 grow_vertical = 0
 theme = SubResource("Theme_yb28x")
+theme_override_fonts/font = ExtResource("20_xvdpg")
 text = "Menu"
+
+[node name="Sprite2D" type="Sprite2D" parent="GameOver/Menu/Container"]
+position = Vector2(114, 539)
+scale = Vector2(3.625, 2.79688)
+texture = ExtResource("21_pyxd7")
+
+[node name="Sprite2D2" type="Sprite2D" parent="GameOver/Menu/Container"]
+position = Vector2(140.5, 378.625)
+scale = Vector2(7.15625, 6.89844)
+texture = ExtResource("8_jmvr7")
+
+[node name="Sprite2D3" type="Sprite2D" parent="GameOver/Menu/Container"]
+position = Vector2(947, 483)
+scale = Vector2(7.15625, 6.89844)
+texture = ExtResource("22_ts5wt")
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 process_mode = 2
@@ -316,48 +345,63 @@ color = Color(0.588235, 0.270588, 0.270588, 1)
 
 [node name="Label" type="Label" parent="PauseMenu/Menu/ColorRect"]
 layout_mode = 0
-offset_left = 299.0
-offset_top = 20.0
-offset_right = 534.0
-offset_bottom = 75.0
-theme_override_font_sizes/font_size = 40
+offset_left = 267.0
+offset_top = 72.0
+offset_right = 807.0
+offset_bottom = 127.0
+theme_override_fonts/font = ExtResource("20_xvdpg")
+theme_override_font_sizes/font_size = 45
 text = "Pause Menu"
 
 [node name="ButtonResume" type="Button" parent="PauseMenu/Menu/ColorRect"]
 layout_mode = 0
-offset_left = 285.0
-offset_top = 100.0
-offset_right = 785.0
-offset_bottom = 180.0
-theme_override_font_sizes/font_size = 35
+offset_left = 281.0
+offset_top = 200.0
+offset_right = 825.0
+offset_bottom = 282.0
+theme_override_fonts/font = ExtResource("20_xvdpg")
+theme_override_font_sizes/font_size = 30
 text = "Resume Level"
 
 [node name="ButtonSave" type="Button" parent="PauseMenu/Menu/ColorRect"]
 layout_mode = 0
-offset_left = 285.0
-offset_top = 200.0
-offset_right = 785.0
-offset_bottom = 280.0
+offset_left = 278.0
+offset_top = 295.0
+offset_right = 823.0
+offset_bottom = 374.0
+theme_override_fonts/font = ExtResource("20_xvdpg")
 theme_override_font_sizes/font_size = 35
 text = "Save Level"
 
 [node name="ButtonLoad" type="Button" parent="PauseMenu/Menu/ColorRect"]
 layout_mode = 0
-offset_left = 285.0
-offset_top = 300.0
-offset_right = 785.0
-offset_bottom = 380.0
+offset_left = 279.0
+offset_top = 389.0
+offset_right = 821.0
+offset_bottom = 471.0
+theme_override_fonts/font = ExtResource("20_xvdpg")
 theme_override_font_sizes/font_size = 35
 text = "Load Level"
 
 [node name="ButtonQuit" type="Button" parent="PauseMenu/Menu/ColorRect"]
 layout_mode = 0
-offset_left = 285.0
-offset_top = 400.0
-offset_right = 785.0
-offset_bottom = 480.0
+offset_left = 275.0
+offset_top = 486.0
+offset_right = 822.0
+offset_bottom = 565.0
+theme_override_fonts/font = ExtResource("20_xvdpg")
 theme_override_font_sizes/font_size = 35
 text = "Quit Game"
+
+[node name="Sprite2D" type="Sprite2D" parent="PauseMenu"]
+position = Vector2(983.75, 207)
+scale = Vector2(5.39062, 5.125)
+texture = ExtResource("23_hseyt")
+
+[node name="Sprite2D2" type="Sprite2D" parent="PauseMenu"]
+position = Vector2(199, 520)
+scale = Vector2(6.17187, 5.40625)
+texture = ExtResource("5_w0qeo")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 process_mode = 3

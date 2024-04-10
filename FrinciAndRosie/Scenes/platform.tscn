@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://lg4xh5i44mq8"]
 
 [ext_resource type="Script" path="res://Scripts/platform.gd" id="1_bpa8j"]
-[ext_resource type="Texture2D" uid="uid://mcitnb6tm7mk" path="res://Assets/walltile.png" id="1_uecfg"]
+[ext_resource type="Texture2D" uid="uid://drkfougtp2xfa" path="res://Assets/movingWall.png" id="2_hsh2n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uyria"]
 size = Vector2(64, 129)
@@ -18,8 +18,7 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_uyria")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1, 2.01563)
-texture = ExtResource("1_uecfg")
+texture = ExtResource("2_hsh2n")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.612
