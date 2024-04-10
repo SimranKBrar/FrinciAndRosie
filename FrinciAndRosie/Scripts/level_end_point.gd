@@ -6,7 +6,7 @@ var player2_on_collision = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$UI/Menu.visible = false
-	$Death/Menu.visible = false
+
 	
 
 func _on_body_entered(body):
@@ -24,17 +24,20 @@ func proceed_to_next_level():
 	get_tree().paused = true
 	Global.charDied = false
 	$UI/Menu.visible = true
+	$FinishLevelMusic.play()
 	# animation to make menu's modular value visible
 	$AnimationPlayer.play("ui_visibility")
 	
 
 func _on_restart_button_pressed():
+	$SelectSound.play()
 	get_tree().paused = false
 	$UI/Menu.visible = false
 	get_tree().reload_current_scene()
 
 
 func _on_continue_button_pressed():
+	$SelectSound.play()
 	get_tree().paused = false
 	$UI/Menu.visible = false
 	get_tree().change_scene_to_packed(next_level)

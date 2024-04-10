@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://d1pd67sovoyon"]
+[gd_scene load_steps=38 format=3 uid="uid://d1pd67sovoyon"]
 
 [ext_resource type="Script" path="res://Scripts/CatPlayer.gd" id="1_i1tag"]
 [ext_resource type="Texture2D" uid="uid://d4ecfr06d8w37" path="res://Assets/catattack1.png" id="2_dxdjh"]
@@ -23,6 +23,11 @@
 [ext_resource type="Texture2D" uid="uid://ct7dx67yam2db" path="res://Assets/watertub.png" id="21_pyxd7"]
 [ext_resource type="Texture2D" uid="uid://55j3rrvbi4rf" path="res://Assets/dogdeath3.png" id="22_ts5wt"]
 [ext_resource type="Texture2D" uid="uid://df170sllrij3l" path="res://Assets/dogjump4.png" id="23_hseyt"]
+[ext_resource type="AudioStream" uid="uid://bcvrjhr2pj57i" path="res://Assets/aaj_0056_Cat_Reaaarrr_01.mp3" id="24_hi04w"]
+[ext_resource type="AudioStream" uid="uid://pnjgy3t2axpp" path="res://Assets/mixkit-arcade-retro-game-over-213.wav" id="25_q5a64"]
+[ext_resource type="AudioStream" uid="uid://ckdh8anx573yr" path="res://Assets/zapsplat_cartoon_frog_jump_26526.mp3" id="26_4l4pf"]
+[ext_resource type="AudioStream" uid="uid://cfbhqkndvk0yn" path="res://Assets/music_zapsplat_game_music_action_dark_sniper_beats_electronic_millitary_018.mp3" id="27_66ig2"]
+[ext_resource type="AudioStream" uid="uid://mrrkve2v0xmj" path="res://Assets/select sound.wav" id="28_gwl3n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_353vg"]
 size = Vector2(23, 22)
@@ -254,30 +259,30 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 215.0
-offset_top = 10.0
-offset_right = 551.0
-offset_bottom = 51.0
+offset_left = 212.0
+offset_top = 8.0
+offset_right = 548.0
+offset_bottom = 38.0
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("20_xvdpg")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 25
 text = "Time: "
 
-[node name="Label2" type="Label" parent="GameOver/Menu/Container/TimeCompleted"]
+[node name="Value" type="Label" parent="GameOver/Menu/Container/TimeCompleted"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -615.0
-offset_top = 10.0
-offset_right = -205.0
-offset_bottom = 46.0
+offset_left = -667.0
+offset_top = 7.0
+offset_right = -257.0
+offset_bottom = 37.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("20_xvdpg")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 text = "0	"
 
 [node name="RestartButton" type="Button" parent="GameOver/Menu/Container"]
@@ -408,6 +413,24 @@ process_mode = 3
 libraries = {
 "": SubResource("AnimationLibrary_0cw1p")
 }
+
+[node name="Meow" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_hi04w")
+
+[node name="Died" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_q5a64")
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_4l4pf")
+volume_db = -14.596
+
+[node name="GameOverMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("27_66ig2")
+volume_db = -11.859
+
+[node name="SelectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("28_gwl3n")
+volume_db = 11.0
 
 [connection signal="pressed" from="GameOver/Menu/Container/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="GameOver/Menu/Container/MenuButton" to="." method="_on_menu_button_pressed"]

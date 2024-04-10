@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://xbyyj5lujknh"]
+[gd_scene load_steps=11 format=3 uid="uid://xbyyj5lujknh"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_ojkes"]
 [ext_resource type="Texture2D" uid="uid://cxk3icj0vblox" path="res://Assets/Screenshot_2024-04-07_at_11.52.31_PM.webp" id="2_4khuu"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cbcmkmil2q2ql" path="res://Assets/Sprite-0001-Recovered2.png" id="6_pe4nc"]
 [ext_resource type="Texture2D" uid="uid://j0d0o2vxod8i" path="res://Assets/opencardboardbox.png" id="7_3sewt"]
 [ext_resource type="Texture2D" uid="uid://cbjredmhnm3bv" path="res://Assets/Sprite-0002-Recovered1.png" id="8_nrkmf"]
+[ext_resource type="AudioStream" uid="uid://mrrkve2v0xmj" path="res://Assets/select sound.wav" id="9_j4jpy"]
 
 [sub_resource type="Theme" id="Theme_jhnnn"]
 
@@ -79,7 +80,6 @@ text = "Quit Game"
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_l8nr8")
-volume_db = -80.0
 
 [node name="Sprite2D" type="Sprite2D" parent="BackgroundMusic"]
 position = Vector2(598, 244)
@@ -105,6 +105,10 @@ texture = ExtResource("7_3sewt")
 position = Vector2(1035, 420)
 scale = Vector2(6.538, 6.63336)
 texture = ExtResource("8_nrkmf")
+
+[node name="SelectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_j4jpy")
+volume_db = 11.0
 
 [connection signal="pressed" from="Menu/ColorRect/ButtonNew" to="." method="_on_button_new_pressed"]
 [connection signal="pressed" from="Menu/ColorRect/ButtonLoad" to="." method="_on_button_load_pressed"]

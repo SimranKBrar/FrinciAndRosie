@@ -772,8 +772,8 @@ position = Vector2(584, 330)
 [node name="CatPlayer" parent="." instance=ExtResource("14_lm6ic")]
 position = Vector2(193, 587)
 
-[node name="GameWon" parent="." instance=ExtResource("13_ln48n")]
-position = Vector2(372, 602)
-
 [node name="Vacuum2" parent="." instance=ExtResource("14_nolei")]
 position = Vector2(204, 333)
+
+[node name="GameWon" parent="." instance=ExtResource("13_ln48n")]
+position = Vector2(476, 92)

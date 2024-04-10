@@ -47,6 +47,7 @@ func player_animations():
 			$AnimatedSprite2D.play("cat_climb")
 			
 		if  Input.is_action_pressed("cat_jump"):
+			$Jump.play()
 			$AnimatedSprite2D.play("cat_jump")
 			if is_on_floor():
 				velocity.y = jump_height
@@ -96,6 +97,7 @@ func _input(event):
 	#on attack
 	if event.is_action_pressed("cat_attack"):
 		$AnimatedSprite2D.play("cat_attack")
+		$Meow.play()
 		attack()
 		#$AnimatedSprite2D.play("attack")		
 
@@ -129,14 +131,17 @@ func attack():
 
 
 func _on_restart_button_pressed():
+	$SelectSound.play()
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 
 
 func _on_menu_button_pressed():
+	$SelectSound.play()
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 func _on_button_resume_pressed():
+	$SelectSound.play()
 	#unpause scene
 	get_tree().paused = false
 	#hide menu
@@ -144,17 +149,24 @@ func _on_button_resume_pressed():
 
 
 func _on_button_save_pressed():
+	$SelectSound.play()
 	Global.save_game()
 
-
-
 func _on_button_load_pressed():
-	pass # Replace with function body.
+	$SelectSound.play()
+		# Get the current scene (Main or Main_2 in this case)
+	var current_scene = get_tree().root.get_tree().current_scene
+	# Free the current scene if it exists
+	if current_scene:
+		current_scene.queue_free()
+	#load game
+	Global.load_game()
 
 func _ready():
 	$AnimatedSprite2D.play("cat_idle")
 	
 func _on_button_quit_pressed():
+	$SelectSound.play()
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 func final_score_time_and_rating():
@@ -168,14 +180,16 @@ func climb(param):
 	isClimbing = param
 	
 func take_damage():
+	final_score_time_and_rating()
 	$AnimatedSprite2D.play("cat_death")
+	$Died.play()
 	await $AnimatedSprite2D.animation_finished
 	
 	get_tree().paused = true
 	
 	#show menu
 	Global.treats = 0 
-	print("paused")
+	$GameOver/Menu/Container/TimeCompleted/Value.text = str(Global.final_time)
 	$GameOver.visible = true
-	print("about to pause")
+	$GameOverMusic.play()
 

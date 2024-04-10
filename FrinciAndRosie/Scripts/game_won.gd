@@ -33,9 +33,7 @@ func _on_restart_button_pressed():
 func _on_continue_button_pressed():
 	get_tree().quit()
 
-func _process(delta):
-	if Global.charDied:
-		proceed_to_next_level()
+
 
 
 func _on_final_button_pressed():
@@ -44,5 +42,6 @@ func _on_final_button_pressed():
 	get_tree().paused = true
 	Global.charDied = false
 	$UI/Menu.visible = true
+	$won.play()
 	# animation to make menu's modular value visible
 	$AnimationPlayer.play("ui_visibility")

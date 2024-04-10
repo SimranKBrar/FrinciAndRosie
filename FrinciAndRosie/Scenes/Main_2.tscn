@@ -737,7 +737,7 @@ scale = Vector2(2, 2)
 position = Vector2(218, 584)
 
 [node name="Level EndPoint" parent="." instance=ExtResource("12_6jyth")]
-position = Vector2(518, 90)
+position = Vector2(509, 93)
 next_level = ExtResource("13_dhdbw")
 
 [node name="Ladder" parent="." instance=ExtResource("11_wftc2")]
@@ -750,7 +750,7 @@ position = Vector2(-8, 82)
 position = Vector2(-8, 146)
 
 [node name="WallSystem" parent="." instance=ExtResource("15_0blnh")]
-position = Vector2(622, 549)
+position = Vector2(614, 548)
 
 [node name="Ghost" parent="." instance=ExtResource("11_gyhdt")]
 position = Vector2(845, 188)

@@ -12,6 +12,7 @@ func _process(delta):
 
 
 func _on_button_load_pressed():
+	$SelectSound.play()
 	var current_scene = get_tree().current_scene
 	# Free the current scene if it exists
 	if current_scene:
@@ -22,10 +23,12 @@ func _on_button_load_pressed():
 
 
 func _on_button_quit_pressed():
+	$SelectSound.play()
 	get_tree().quit()
 
 
 func _on_button_new_pressed():
+	$SelectSound.play()
 	# Get the current scene
 	var current_scene = get_tree().current_scene
 	# Free the current scene if it exists

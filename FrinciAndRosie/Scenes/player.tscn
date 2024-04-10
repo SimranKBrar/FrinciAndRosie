@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bgfl4ut0c54t8"]
+[gd_scene load_steps=49 format=3 uid="uid://bgfl4ut0c54t8"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_e5fsk"]
 [ext_resource type="Texture2D" uid="uid://b4edxm440muh8" path="res://Assets/Sprite-0001-Recovered3.png" id="2_8otrx"]
@@ -34,6 +34,11 @@
 [ext_resource type="Texture2D" uid="uid://fi8rlgd1h5c7" path="res://Assets/vacuum.png" id="32_atcrv"]
 [ext_resource type="Texture2D" uid="uid://hx25yc1wambb" path="res://Assets/ghost.png" id="33_vjx6s"]
 [ext_resource type="Texture2D" uid="uid://dt0nwvoc51ojf" path="res://Assets/ladder.png" id="34_8nm2v"]
+[ext_resource type="AudioStream" uid="uid://ff0h3yxnp5m0" path="res://Assets/fork_media_cartoon_dog_bark_growl.mp3" id="35_u0ww4"]
+[ext_resource type="AudioStream" uid="uid://pnjgy3t2axpp" path="res://Assets/mixkit-arcade-retro-game-over-213.wav" id="36_bjo6q"]
+[ext_resource type="AudioStream" uid="uid://ckdh8anx573yr" path="res://Assets/zapsplat_cartoon_frog_jump_26526.mp3" id="37_5sm2f"]
+[ext_resource type="AudioStream" uid="uid://cfbhqkndvk0yn" path="res://Assets/music_zapsplat_game_music_action_dark_sniper_beats_electronic_millitary_018.mp3" id="38_y0r46"]
+[ext_resource type="AudioStream" uid="uid://mrrkve2v0xmj" path="res://Assets/select sound.wav" id="39_n5t2d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_353vg"]
 size = Vector2(23, 22)
@@ -196,6 +201,21 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.278431, 0.435294, 0.972549, 1)
 
+[node name="Sprite2D2" type="Sprite2D" parent="GameOver/Menu"]
+position = Vector2(175.5, 405.625)
+scale = Vector2(7.15625, 6.89844)
+texture = ExtResource("21_xy6c5")
+
+[node name="Sprite2D" type="Sprite2D" parent="GameOver/Menu"]
+position = Vector2(149, 566)
+scale = Vector2(3.625, 2.79688)
+texture = ExtResource("20_3gms5")
+
+[node name="Sprite2D3" type="Sprite2D" parent="GameOver/Menu"]
+position = Vector2(982, 510)
+scale = Vector2(7.15625, 6.89844)
+texture = ExtResource("6_f0egh")
+
 [node name="Container" type="ColorRect" parent="GameOver/Menu"]
 layout_mode = 1
 anchors_preset = 15
@@ -264,30 +284,30 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 223.0
-offset_top = 7.0
-offset_right = 559.0
-offset_bottom = 48.0
+offset_left = 212.0
+offset_top = 8.0
+offset_right = 548.0
+offset_bottom = 38.0
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("19_hu1xv")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 25
 text = "Time: "
 
-[node name="Label2" type="Label" parent="GameOver/Menu/Container/TimeCompleted"]
+[node name="Value" type="Label" parent="GameOver/Menu/Container/TimeCompleted"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -607.0
+offset_left = -667.0
 offset_top = 7.0
-offset_right = -197.0
-offset_bottom = 43.0
+offset_right = -257.0
+offset_bottom = 37.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("19_hu1xv")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 text = "0	"
 
 [node name="RestartButtonGameOver" type="Button" parent="GameOver/Menu/Container"]
@@ -317,21 +337,6 @@ grow_vertical = 0
 theme = SubResource("Theme_yb28x")
 theme_override_fonts/font = ExtResource("19_hu1xv")
 text = "Menu"
-
-[node name="Sprite2D" type="Sprite2D" parent="GameOver"]
-position = Vector2(149, 566)
-scale = Vector2(3.625, 2.79688)
-texture = ExtResource("20_3gms5")
-
-[node name="Sprite2D2" type="Sprite2D" parent="GameOver"]
-position = Vector2(175.5, 405.625)
-scale = Vector2(7.15625, 6.89844)
-texture = ExtResource("21_xy6c5")
-
-[node name="Sprite2D3" type="Sprite2D" parent="GameOver"]
-position = Vector2(982, 510)
-scale = Vector2(7.15625, 6.89844)
-texture = ExtResource("6_f0egh")
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 process_mode = 2
@@ -454,11 +459,9 @@ vertical_alignment = 1
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_qgua4")
-volume_db = -80.0
 
 [node name="PauseMenuMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_6mnt1")
-volume_db = -80.0
 
 [node name="Instructions" type="Popup" parent="."]
 process_mode = 3
@@ -799,6 +802,24 @@ theme_override_fonts/font = ExtResource("19_hu1xv")
 theme_override_font_sizes/font_size = 15
 text = "Treats in every room!"
 horizontal_alignment = 2
+
+[node name="Bark" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("35_u0ww4")
+
+[node name="Died" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("36_bjo6q")
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("37_5sm2f")
+volume_db = -11.859
+
+[node name="GameOverMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("38_y0r46")
+volume_db = -11.859
+
+[node name="SelectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("39_n5t2d")
+volume_db = 11.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="pressed" from="GameOver/Menu/Container/RestartButtonGameOver" to="." method="_on_restart_button_game_over_pressed"]
