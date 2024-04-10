@@ -172,6 +172,10 @@ func _ready():
 	$UI/Treats/Label.text = str(Global.treats)
 	
 	$AnimatedSprite2D.play("dog_idle")
+	if Global.get_current_level_number() == 1:
+		#stop processing
+		set_process(false)
+		$Instructions.show()
 	
 func _process(delta):
 	if lives <= 0:
@@ -201,9 +205,14 @@ func take_damage():
 
 
 
-func _on_popup_popup_hide():
-	pass # Replace with function body.
-
-
 func _on_accept_button_pressed():
-	pass # Replace with function body.
+	$Instructions.hide()
+	#unpause game
+	$Story.show()
+
+
+
+func _on_narrative_button_pressed():
+	$Story.hide()
+	get_tree().paused = false
+	set_process(true)

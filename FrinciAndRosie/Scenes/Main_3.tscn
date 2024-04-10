@@ -773,7 +773,7 @@ position = Vector2(584, 330)
 position = Vector2(193, 587)
 
 [node name="GameWon" parent="." instance=ExtResource("13_ln48n")]
-position = Vector2(490, 91)
+position = Vector2(372, 602)
 
 [node name="Vacuum2" parent="." instance=ExtResource("14_nolei")]
 position = Vector2(204, 333)

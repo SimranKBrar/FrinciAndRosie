@@ -20,12 +20,8 @@ func _on_body_entered(body):
 		proceed_to_next_level()
 
 func proceed_to_next_level():
-	$UI/Menu/Container/TimeCompleted/Value.text = str(Global.final_time)
-	get_tree().paused = true
-	Global.charDied = false
-	$UI/Menu.visible = true
-	# animation to make menu's modular value visible
-	$AnimationPlayer.play("ui_visibility")
+		set_process(false)
+		$Story.show()
 	 
 
 func _on_restart_button_pressed():
@@ -40,3 +36,13 @@ func _on_continue_button_pressed():
 func _process(delta):
 	if Global.charDied:
 		proceed_to_next_level()
+
+
+func _on_final_button_pressed():
+	$Story.hide()
+	$UI/Menu/Container/TimeCompleted/Value.text = str(Global.final_time)
+	get_tree().paused = true
+	Global.charDied = false
+	$UI/Menu.visible = true
+	# animation to make menu's modular value visible
+	$AnimationPlayer.play("ui_visibility")

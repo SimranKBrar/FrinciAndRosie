@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bgfl4ut0c54t8"]
+[gd_scene load_steps=44 format=3 uid="uid://bgfl4ut0c54t8"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_e5fsk"]
 [ext_resource type="Texture2D" uid="uid://b4edxm440muh8" path="res://Assets/Sprite-0001-Recovered3.png" id="2_8otrx"]
@@ -26,6 +26,14 @@
 [ext_resource type="Texture2D" uid="uid://ds8bvptbstloa" path="res://Assets/catdeath2.png" id="21_xy6c5"]
 [ext_resource type="AudioStream" uid="uid://cn5icgtye7kyl" path="res://Assets/kl-peach-game-over-iii-142453.mp3" id="22_6mnt1"]
 [ext_resource type="Texture2D" uid="uid://vjvvu3wlt54a" path="res://Assets/catclimb1.png" id="22_37y6d"]
+[ext_resource type="Texture2D" uid="uid://b4ivw27p50o5a" path="res://Assets/dogkeys.png" id="27_tmjin"]
+[ext_resource type="Texture2D" uid="uid://bmpvsgya6namw" path="res://Assets/catidle1.png" id="28_56g0h"]
+[ext_resource type="Texture2D" uid="uid://sl7wiq1khjr0" path="res://Assets/cat keys.png" id="29_jlmg2"]
+[ext_resource type="Texture2D" uid="uid://d33ovy43cwflf" path="res://Assets/special keys.png" id="30_icv78"]
+[ext_resource type="Texture2D" uid="uid://dmyx0apjvh3bg" path="res://Assets/dogbowl.png" id="31_cdx6q"]
+[ext_resource type="Texture2D" uid="uid://fi8rlgd1h5c7" path="res://Assets/vacuum.png" id="32_atcrv"]
+[ext_resource type="Texture2D" uid="uid://hx25yc1wambb" path="res://Assets/ghost.png" id="33_vjx6s"]
+[ext_resource type="Texture2D" uid="uid://dt0nwvoc51ojf" path="res://Assets/ladder.png" id="34_8nm2v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_353vg"]
 size = Vector2(23, 22)
@@ -453,9 +461,8 @@ stream = ExtResource("22_6mnt1")
 volume_db = -80.0
 
 [node name="Instructions" type="Popup" parent="."]
-process_mode = 2
+process_mode = 3
 size = Vector2i(1152, 648)
-visible = true
 
 [node name="Menu" type="ColorRect" parent="Instructions"]
 anchors_preset = 15
@@ -465,82 +472,333 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0745098, 0.290196, 0.223529, 1)
 
-[node name="Label" type="Label" parent="Instructions/Menu"]
+[node name="Container" type="ColorRect" parent="Instructions/Menu"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 80.0
+offset_right = 1080.0
+offset_bottom = 580.0
+color = Color(0.147267, 0.486446, 0.381743, 1)
+
+[node name="Label" type="Label" parent="Instructions/Menu/Container"]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 20.0
+offset_right = 840.0
+offset_bottom = 53.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+text = "Game Instructions:"
+
+[node name="AcceptButton" type="Button" parent="Instructions/Menu/Container"]
+layout_mode = 0
+offset_left = 950.0
+offset_right = 1000.0
+offset_bottom = 50.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 26
+text = "x"
+
+[node name="ColorRect" type="ColorRect" parent="Instructions/Menu/Container"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 88.0
+offset_right = 90.0
+offset_bottom = 88.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Instructions/Menu/Container/ColorRect"]
+position = Vector2(-40, 5)
+texture = ExtResource("4_5u464")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Instructions/Menu/Container/ColorRect"]
+position = Vector2(310, 15)
+texture = ExtResource("27_tmjin")
+
+[node name="Label" type="Label" parent="Instructions/Menu/Container/ColorRect"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 9
+text = "To move Rosie  use the            arrow keys, shift for attack and space to jump"
+horizontal_alignment = 2
 
-[node name="AcceptButton" type="Button" parent="Instructions/Menu"]
+[node name="ColorRect2" type="ColorRect" parent="Instructions/Menu/Container"]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-theme_override_fonts/font = ExtResource("19_hu1xv")
+offset_left = 90.0
+offset_top = 150.0
+offset_right = 90.0
+offset_bottom = 150.0
 
-[node name="ColorRect" type="ColorRect" parent="Instructions/Menu"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Sprite2D" type="Sprite2D" parent="Instructions/Menu/Container/ColorRect2"]
+position = Vector2(-35, 0)
+texture = ExtResource("28_56g0h")
 
-[node name="Sprite2D" type="Sprite2D" parent="Instructions/Menu/ColorRect"]
+[node name="Sprite2D2" type="Sprite2D" parent="Instructions/Menu/Container/ColorRect2"]
+position = Vector2(310, 5)
+texture = ExtResource("29_jlmg2")
 
-[node name="Label" type="Label" parent="Instructions/Menu/ColorRect"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_fonts/font = ExtResource("19_hu1xv")
-
-[node name="ColorRect2" type="ColorRect" parent="Instructions/Menu"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Sprite2D" type="Sprite2D" parent="Instructions/Menu/ColorRect2"]
-
-[node name="Label" type="Label" parent="Instructions/Menu/ColorRect2"]
+[node name="Label" type="Label" parent="Instructions/Menu/Container/ColorRect2"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 9
+text = "To move Frinici use the            WASD keys, Q for attack and E to jump"
+horizontal_alignment = 2
 
-[node name="ColorRect3" type="ColorRect" parent="Instructions/Menu"]
+[node name="ColorRect3" type="ColorRect" parent="Instructions/Menu/Container"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 90.0
+offset_top = 210.0
+offset_right = 90.0
+offset_bottom = 210.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Instructions/Menu/ColorRect3"]
+[node name="Sprite2D2" type="Sprite2D" parent="Instructions/Menu/Container/ColorRect3"]
+position = Vector2(330, 30)
+texture = ExtResource("30_icv78")
 
-[node name="Label" type="Label" parent="Instructions/Menu/ColorRect3"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_fonts/font = ExtResource("19_hu1xv")
-
-[node name="ColorRect4" type="ColorRect" parent="Instructions/Menu"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Sprite2D" type="Sprite2D" parent="Instructions/Menu/ColorRect4"]
-
-[node name="Label" type="Label" parent="Instructions/Menu/ColorRect4"]
+[node name="Label" type="Label" parent="Instructions/Menu/Container/ColorRect3"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 9
+text = "For special keys use the           esc and P key for pause menu"
+horizontal_alignment = 2
 
-[node name="ColorRect5" type="ColorRect" parent="Instructions/Menu"]
+[node name="ColorRect4" type="ColorRect" parent="Instructions/Menu/Container"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 90.0
+offset_top = 260.0
+offset_right = 90.0
+offset_bottom = 260.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Instructions/Menu/ColorRect5"]
+[node name="Sprite2D2" type="Sprite2D" parent="Instructions/Menu/Container/ColorRect4"]
+position = Vector2(-40, 0)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("31_cdx6q")
 
-[node name="Label" type="Label" parent="Instructions/Menu/ColorRect5"]
+[node name="Label" type="Label" parent="Instructions/Menu/Container/ColorRect4"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 9
+text = "The goal is to get each pet to the bowls at the end of the level"
+horizontal_alignment = 2
+
+[node name="ColorRect5" type="ColorRect" parent="Instructions/Menu/Container"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 310.0
+offset_right = 90.0
+offset_bottom = 310.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="Instructions/Menu/Container/ColorRect5"]
+position = Vector2(-40, -4)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("5_07daj")
+
+[node name="Label" type="Label" parent="Instructions/Menu/Container/ColorRect5"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 9
+text = "collect as many bones as possible"
+horizontal_alignment = 2
+
+[node name="ColorRect6" type="ColorRect" parent="Instructions/Menu/Container"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 360.0
+offset_right = 90.0
+offset_bottom = 360.0
+
+[node name="Label" type="Label" parent="Instructions/Menu/Container/ColorRect6"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 9
+text = "The pets can kill what they arent afraid of"
+horizontal_alignment = 2
+
+[node name="ColorRect7" type="ColorRect" parent="Instructions/Menu/Container"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 410.0
+offset_right = 90.0
+offset_bottom = 410.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="Instructions/Menu/Container/ColorRect7"]
+position = Vector2(-30, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("32_atcrv")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Instructions/Menu/Container/ColorRect7"]
+position = Vector2(335, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("33_vjx6s")
+
+[node name="Label" type="Label" parent="Instructions/Menu/Container/ColorRect7"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 9
+text = "Frinci is afraid of Vacuums        Rosie is afraid of GHosts"
+horizontal_alignment = 2
+
+[node name="ColorRect8" type="ColorRect" parent="Instructions/Menu/Container"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 460.0
+offset_right = 90.0
+offset_bottom = 460.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="Instructions/Menu/Container/ColorRect8"]
+position = Vector2(-25, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("34_8nm2v")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Instructions/Menu/Container/ColorRect8"]
+position = Vector2(295, 5)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("20_3gms5")
+
+[node name="Label" type="Label" parent="Instructions/Menu/Container/ColorRect8"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 9
+text = "Frinci can climb ladders       Rosie can swim in water"
+horizontal_alignment = 2
+
+[node name="Story" type="Popup" parent="."]
+process_mode = 3
+size = Vector2i(1152, 648)
+
+[node name="Menu" type="ColorRect" parent="Story"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.25098, 0.14902, 0.545098, 1)
+
+[node name="Container" type="ColorRect" parent="Story/Menu"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 80.0
+offset_right = 1080.0
+offset_bottom = 580.0
+color = Color(0.356863, 0.388235, 0.682353, 1)
+
+[node name="Label" type="Label" parent="Story/Menu/Container"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 40.0
+offset_right = 940.0
+offset_bottom = 78.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 33
+text = "Oh No!"
+
+[node name="NarrativeButton" type="Button" parent="Story/Menu/Container"]
+layout_mode = 0
+offset_left = 950.0
+offset_right = 1000.0
+offset_bottom = 50.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 26
+text = "x"
+
+[node name="ColorRect" type="ColorRect" parent="Story/Menu/Container"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 120.0
+offset_right = 90.0
+offset_bottom = 120.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Story/Menu/Container/ColorRect"]
+position = Vector2(-40, 5)
+texture = ExtResource("4_5u464")
+
+[node name="Label" type="Label" parent="Story/Menu/Container/ColorRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 15
+text = "Frinci and Rosie's Treat Bag has gone missing!
+
+
+"
+horizontal_alignment = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Story/Menu/Container"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 180.0
+offset_right = 90.0
+offset_bottom = 180.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Story/Menu/Container/ColorRect2"]
+position = Vector2(-35, 0)
+texture = ExtResource("28_56g0h")
+
+[node name="Label" type="Label" parent="Story/Menu/Container/ColorRect2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 15
+text = "Their Treats are strewn about the house help them"
+horizontal_alignment = 2
+
+[node name="ColorRect3" type="ColorRect" parent="Story/Menu/Container"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 250.0
+offset_right = 90.0
+offset_bottom = 250.0
+
+[node name="Label" type="Label" parent="Story/Menu/Container/ColorRect3"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 15
+text = "fill their treat bag by helping them collect"
+horizontal_alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Story/Menu/Container/ColorRect3"]
+position = Vector2(-40, 0)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("5_07daj")
+
+[node name="ColorRect4" type="ColorRect" parent="Story/Menu/Container"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 320.0
+offset_right = 90.0
+offset_bottom = 320.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="Story/Menu/Container/ColorRect4"]
+position = Vector2(-40, 0)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("31_cdx6q")
+
+[node name="Label" type="Label" parent="Story/Menu/Container/ColorRect4"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("19_hu1xv")
+theme_override_font_sizes/font_size = 15
+text = "Treats in every room!"
+horizontal_alignment = 2
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="pressed" from="GameOver/Menu/Container/RestartButtonGameOver" to="." method="_on_restart_button_game_over_pressed"]
@@ -549,5 +807,5 @@ theme_override_fonts/font = ExtResource("19_hu1xv")
 [connection signal="pressed" from="PauseMenu/Menu/ColorRect/ButtonSave" to="." method="_on_button_save_pressed"]
 [connection signal="pressed" from="PauseMenu/Menu/ColorRect/ButtonLoad" to="." method="_on_button_load_pressed"]
 [connection signal="pressed" from="PauseMenu/Menu/ColorRect/ButtonQuit" to="." method="_on_button_quit_pressed"]
-[connection signal="popup_hide" from="Instructions" to="." method="_on_popup_popup_hide"]
-[connection signal="pressed" from="Instructions/Menu/AcceptButton" to="." method="_on_accept_button_pressed"]
+[connection signal="pressed" from="Instructions/Menu/Container/AcceptButton" to="." method="_on_accept_button_pressed"]
+[connection signal="pressed" from="Story/Menu/Container/NarrativeButton" to="." method="_on_narrative_button_pressed"]
