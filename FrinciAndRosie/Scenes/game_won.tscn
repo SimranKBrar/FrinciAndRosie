@@ -69,6 +69,7 @@ scale = Vector2(1.07813, 1.03125)
 texture = ExtResource("3_b7nt7")
 
 [node name="UI" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Menu" type="ColorRect" parent="UI"]
 anchors_preset = 15

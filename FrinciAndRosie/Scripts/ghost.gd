@@ -2,14 +2,11 @@ extends CharacterBody2D
 
 
 var speed = -60
-# Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
 var facing_right = false
 
-	
+#enemy movement
 func _physics_process(delta):
-	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	if !($RayCast2D.is_colliding() && is_on_floor()):
@@ -18,9 +15,9 @@ func _physics_process(delta):
 		flip()
 		
 	velocity.x = speed
-
 	move_and_slide()
 
+#flip character image
 func flip():
 	facing_right =! facing_right
 	scale.x = abs(scale.x) * -1
@@ -29,12 +26,12 @@ func flip():
 	else:
 		speed = abs(speed) * -1
 
+#kill player function
 func _on_area_2d_area_entered(area):
 	if area.get_parent().name == "Player" || area.get_parent().name == "CatPlayer":
 		Global.charDied = true
 		area.get_parent().take_damage()
 		
-		
+#die function		
 func die():
-	queue_free()
-	
+	queue_free()	
