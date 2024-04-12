@@ -12,8 +12,14 @@ The motivations for this game were a few different factors. It is designed as a 
 
 # Credits
 Single player platformer tutorial - https://dev.to/christinec_dev/learn-godot-4-by-making-a-2d-platformer-part-1-project-editor-overview-1ap4 
+
 Patrolling Enemy tutorial - https://www.youtube.com/watch?v=P02PcfgqrY8&t=3s
+
 Asset Credits(Music, sprites, sprite inspiration):
+
 https://pixabay.com/music/search/8bit%20sad/
+
 https://mixkit.co/free-sound-effects/discover/menu/
+
 https://blatfan.itch.io/blatkeys?download#google_vignette
+
